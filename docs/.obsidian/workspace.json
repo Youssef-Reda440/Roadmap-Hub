@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "75d3e37eebf22fc9",
+        "id": "7b481d4f80cd4b0a",
         "type": "tabs",
         "children": [
           {
-            "id": "989ca648aeb422b8",
+            "id": "0e99b9a8797725b1",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Extensions.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Extensions"
             }
           }
         ]
@@ -184,34 +188,35 @@
       "bases:Create new base": false
     }
   },
-  "active": "989ca648aeb422b8",
+  "active": "0e99b9a8797725b1",
   "lastOpenFiles": [
+    "Tailwind.md",
+    "Extensions.md",
+    "Pages/LEARNER.md",
+    "Database/Tables.md",
+    "Database/users.md",
+    "Database/categories.md",
+    "CSS_Styles.md",
+    "Tasks/Task1.md",
+    "Pages/ADMIN.md",
+    "Actors_Requirements/Learner.md",
     "Actors_Requirements/Admin.md",
+    "Untitled.md",
+    "Tasks",
+    "Views Structure.md",
+    "Actors.md",
     "Pages.md",
     "Actors_Requirements/Guest.md",
-    "Actors.md",
-    "CSS_Styles.md",
-    "Database/categories.md",
     "Database/creator_applications.md",
     "Database/resources.md",
-    "Database/users.md",
     "Database/topics.md",
     "Database/roadmap_enrollments.md",
     "Database/stages.md",
-    "Database/Tables.md",
     "Database/reports.md",
     "Database/reviews.md",
     "Database/saved_roadmaps.md",
     "Database/topic_completions.md",
     "Database/roadmaps.md",
-    "Database/creator_profiles.md",
-    "Tailwind.md",
-    "Database",
-    "BasicFlow.md",
-    "Pages/AUTH.md",
-    "User_Flows/Admin_Flow.md",
-    "Core_Features.md",
-    "Views Structure.md",
-    "Our_Steps.md"
+    "Database"
   ]
 }
