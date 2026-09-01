@@ -1,5 +1,4 @@
-- **Admin** 
-- **Creator** 
+- **Admin**
+- **Creator**
 - **Learner**
 - **Guest**
-

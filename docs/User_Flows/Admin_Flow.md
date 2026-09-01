@@ -1,4 +1,3 @@
-
 **A. Creator Approval**
 
 ```text

@@ -1,4 +1,3 @@
-
 **A. Discover & Start Roadmap**
 
 ```text
@@ -19,7 +18,6 @@ Start Roadmap
 My Learning
 ```
 
-
 **B. Learning & Progress**
 
 ```text
@@ -39,13 +37,12 @@ Progress Updated Automatically
       ↓
 Continue Learning
 
-* An Example : 
+* An Example :
 
 5 / 10 Topics Completed
         ↓
 Progress = 50%
 ```
-
 
 **C. Save Roadmap**
 
@@ -58,7 +55,6 @@ Save
       ↓
 Saved Roadmaps
 ```
-
 
 **D. Rating & Review**
 

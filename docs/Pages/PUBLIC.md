@@ -1,4 +1,3 @@
-
 ```text
 Home
 │
@@ -72,7 +71,7 @@ Roadmap Details
 └── Reviews
 ```
 
-**Actions -> Guest : ** 
+**Actions -> Guest : **
 
 View
 Search
@@ -114,12 +113,10 @@ Categories
 └── ...
 ```
 
-**Actions : ** 
+**Actions : **
 
 ```text
 Select Category
       ↓
 Explore Roadmaps
 ```
-
-

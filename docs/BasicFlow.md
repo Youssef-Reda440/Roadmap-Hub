@@ -13,7 +13,7 @@
               │
               ↓
            Database
-              
+
 Controller
     │
     ↓
@@ -22,5 +22,3 @@ Blade View
     ↓
 HTML + CSS
 ```
-
-

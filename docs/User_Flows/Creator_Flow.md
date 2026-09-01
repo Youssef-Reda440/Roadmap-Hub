@@ -1,4 +1,3 @@
-
 **A. Become a Creator**
 
 ```text
@@ -16,13 +15,12 @@ Approved
    ↓
 Creator Dashboard
 
-OR 
+OR
 
 Rejected
    ↓
 Learner
 ```
-
 
 **B. Create Roadmap**
 
@@ -43,7 +41,6 @@ Organize / Reorder
        ↓
 Save as Draft
 ```
-
 
 **C. Submit Roadmap**
 
@@ -74,7 +71,6 @@ Submit Again
     ↓
 Pending Review
 ```
-
 
 **D. Creator Statistics**
 

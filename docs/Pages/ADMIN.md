@@ -99,7 +99,7 @@ Roadmap Reviews
 └── Review Action
 ```
 
- **Actions :**
+**Actions :**
 
 Approve
 Reject
@@ -193,27 +193,25 @@ Admin
 
 **Admin Flow :**
 
- ```text
-                    Admin Dashboard
-                           │
-          ┌────────────────┼────────────────┐
-          ↓                ↓                ↓
-        Users           Creators         Roadmaps
-          │                │                │
-       Manage          Applications      Review
-          │                │                │
-          ↓                ↓                ↓
-       Account        Approve/Reject   Approve/Reject
-                                             │
-                                             ↓
-                                          Publish
+```text
+                   Admin Dashboard
+                          │
+         ┌────────────────┼────────────────┐
+         ↓                ↓                ↓
+       Users           Creators         Roadmaps
+         │                │                │
+      Manage          Applications      Review
+         │                │                │
+         ↓                ↓                ↓
+      Account        Approve/Reject   Approve/Reject
+                                            │
+                                            ↓
+                                         Publish
 
-                           │
-                           ↓
-                        Reports
-                           │
-                           ↓
-                       Take Action
- ```
-
-
+                          │
+                          ↓
+                       Reports
+                          │
+                          ↓
+                      Take Action
+```

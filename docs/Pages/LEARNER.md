@@ -134,7 +134,7 @@ Navbar
 
 ---
 
-**Learner Flow** 
+**Learner Flow**
 
 ```text
 Explore
