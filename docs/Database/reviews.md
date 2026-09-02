@@ -4,7 +4,7 @@
 | user_id    | BIGINT    | FK, NOT NULL | Learner who wrote the review |
 | roadmap_id | BIGINT    | FK, NOT NULL | Reviewed Roadmap             |
 | rating     | TINYINT   | NOT NULL     | Rating value from 1 to 5     |
-| comment    | TEXT      |              | Review content               |
+| comment    | TEXT      | NOT NULL     | Review content               |
 | created_at | TIMESTAMP |              | Review creation time         |
 | updated_at | TIMESTAMP |              | Last update time             |
 

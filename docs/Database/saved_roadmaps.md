@@ -3,8 +3,7 @@
 | id         | BIGINT    | PK           | Saved roadmap identifier      |
 | user_id    | BIGINT    | FK, NOT NULL | Learner who saved the Roadmap |
 | roadmap_id | BIGINT    | FK, NOT NULL | Saved Roadmap                 |
-| created_at | TIMESTAMP |              | Save time                     |
-| updated_at | TIMESTAMP |              | Last update time              |
+| saved_at   | TIMESTAMP |              | Save time                     |
 
 ### Purpose
 

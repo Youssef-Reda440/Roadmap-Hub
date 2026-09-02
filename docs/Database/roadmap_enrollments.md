@@ -1,10 +1,9 @@
-| Column     | Type      | Constraints  | Description                     |
-| ---------- | --------- | ------------ | ------------------------------- |
-| id         | BIGINT    | PK           | Enrollment identifier           |
-| user_id    | BIGINT    | FK, NOT NULL | Learner who started the Roadmap |
-| roadmap_id | BIGINT    | FK, NOT NULL | Roadmap being followed          |
-| created_at | TIMESTAMP |              | Enrollment time                 |
-| updated_at | TIMESTAMP |              | Last update time                |
+| Column      | Type      | Constraints  | Description                     |
+| ----------- | --------- | ------------ | ------------------------------- |
+| id          | BIGINT    | PK           | Enrollment identifier           |
+| user_id     | BIGINT    | FK, NOT NULL | Learner who started the Roadmap |
+| roadmap_id  | BIGINT    | FK, NOT NULL | Roadmap being followed          |
+| enrolled_at | TIMESTAMP |              | Enrollment time                 |
 
 ### Purpose
 

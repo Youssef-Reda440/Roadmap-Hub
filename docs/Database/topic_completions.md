@@ -4,8 +4,6 @@
 | user_id      | BIGINT    | FK, NOT NULL | Learner who completed the Topic |
 | topic_id     | BIGINT    | FK, NOT NULL | Completed Topic                 |
 | completed_at | TIMESTAMP | NOT NULL     | Completion time                 |
-| created_at   | TIMESTAMP |              | Creation time                   |
-| updated_at   | TIMESTAMP |              | Last update time                |
 
 ### Purpose
 

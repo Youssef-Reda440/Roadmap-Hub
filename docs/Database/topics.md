@@ -4,7 +4,7 @@
 | stage_id    | BIGINT    | FK, NOT NULL | Related Stage                   |
 | title       | VARCHAR   | NOT NULL     | Topic title                     |
 | description | TEXT      |              | Topic description               |
-| order       | INT       | NOT NULL     | Topic position within the Stage |
+| position    | INT       | NOT NULL     | Topic position within the Stage |
 | created_at  | TIMESTAMP |              | Creation time                   |
 | updated_at  | TIMESTAMP |              | Last update time                |
 

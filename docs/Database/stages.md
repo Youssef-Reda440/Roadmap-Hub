@@ -4,7 +4,7 @@
 | roadmap_id  | BIGINT    | FK, NOT NULL | Related Roadmap                   |
 | title       | VARCHAR   | NOT NULL     | Stage title                       |
 | description | TEXT      |              | Stage description                 |
-| order       | INT       | NOT NULL     | Stage position within the Roadmap |
+| position    | INT       | NOT NULL     | Stage position within the Roadmap |
 | created_at  | TIMESTAMP |              | Creation time                     |
 | updated_at  | TIMESTAMP |              | Last update time                  |
 
