@@ -29,3 +29,8 @@ Thumbs.db
 /docs/Tasks
 /resources/views/hello.blade.php
 /docs/Extensions.md
+/docs/DBML_Syntax.md
+/docs/Our_Steps.md
+/.dbdiagram
+/database-design/schema.dbdiagram
+/docs/.obsidian
