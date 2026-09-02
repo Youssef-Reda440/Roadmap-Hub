@@ -1,0 +1,199 @@
+Table users {
+    id bigint [pk]
+    name  varchar(255) [not null]
+    email varchar(255) [unique, not null]
+    password varchar(255) [not null]
+    role user_role [not null]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table creator_profiles {
+    id bigint [pk]
+    user_id bigint [unique, not null]
+    bio text
+    expertise varchar(255)
+    specialization  varchar(255)
+    profile_picture varchar(255)
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table creator_applications {
+    id bigint [pk]
+    user_id bigint [not null]
+    status creator_application_status [not null]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table categories {
+    id bigint [pk]
+    name varchar(255) [unique, not null]
+    description text
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table roadmaps {
+    id bigint [pk]
+    creator_id  bigint [not null]
+    category_id bigint [not null]
+    title varchar(255) [not null]
+    description text [not null]
+    level roadmap_levels [not null]
+    duration varchar(255) 
+    status roadmap_status [not null]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table stages {
+    id bigint [pk]
+    roadmap_id bigint [not null]
+    title varchar(255) [not null]
+    description text [not null]
+    position int [not null]
+    created_at timestamp
+    updated_at timestamp
+
+    indexes {
+        (roadmap_id, position) [unique]
+    }
+}
+
+Table topics {
+    id bigint [pk]
+    stage_id bigint [not null]
+    title varchar(255) [not null]
+    description text [not null]
+    position int [not null]
+    created_at timestamp
+    updated_at timestamp
+
+    indexes {
+        (stage_id, position) [unique]
+    }
+}
+
+Table resources {
+    id bigint [pk]
+    topic_id bigint [not null]
+    title varchar(255) [not null]
+    url text [not null]
+    type resource_type [not null]
+    description text [not null]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table roadmap_enrollments {
+    id bigint [pk]
+    user_id bigint [not null]
+    roadmap_id bigint [not null]
+    enrolled_at timestamp
+    
+    indexes {
+        (user_id, roadmap_id) [unique]
+    }
+}
+
+
+Table topic_completions {
+    id bigint [pk]
+    user_id  bigint [not null]
+    topic_id bigint [not null]
+    completed_at timestamp [not null]
+
+    indexes {
+        (user_id, topic_id) [unique]
+    }
+}
+
+Table saved_roadmaps {
+    id bigint [pk]
+    user_id bigint [not null]
+    roadmap_id bigint [not null]
+    saved_at timestamp
+
+    indexes {
+        (user_id, roadmap_id) [unique]
+    }
+}
+
+Table reviews {
+    id bigint [pk]
+    user_id bigint [not null]
+    roadmap_id bigint [not null]
+    rating tinyint [not null]
+    comment text [not null]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table reports {
+    id bigint [pk]
+    user_id bigint [not null]
+    reportable_type varchar(255) [not null]
+    reportable_id bigint [not null]
+    reason text [not null]
+    status report_status [not null]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Enum user_role {
+    learner
+    creator
+    admin
+}
+
+Enum creator_application_status {
+    pending
+    approved
+    rejected
+}
+
+Enum roadmap_status {
+    draft
+    pending_review
+    published
+    rejected
+}
+
+Enum roadmap_levels {
+    beginner
+    intermediate
+    advanced
+}
+
+Enum resource_type {
+    youtube
+    documentation
+    article
+    course
+    website
+    other
+}
+
+Enum report_status {
+    pending
+    resolved
+}
+
+Ref: creator_profiles.user_id - users.id
+Ref: creator_applications.user_id > users.id
+Ref: roadmaps.creator_id > users.id
+Ref: roadmaps.category_id > categories.id
+Ref: stages.roadmap_id > roadmaps.id
+Ref: topics.stage_id > stages.id
+Ref: resources.topic_id > topics.id 
+Ref: roadmap_enrollments.user_id > users.id
+Ref: roadmap_enrollments.roadmap_id > roadmaps.id
+Ref: topic_completions.user_id > users.id
+Ref: topic_completions.topic_id > topics.id
+Ref: saved_roadmaps.user_id > users.id
+Ref: saved_roadmaps.roadmap_id > roadmaps.id
+Ref: reviews.user_id > users.id
+Ref: reviews.roadmap_id > roadmaps.id
+Ref: reports.user_id > users.id
