@@ -8,6 +8,6 @@ require __DIR__ . '/admin.php';
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/test', function () {
     return view('roadmap-hub');
 });
