@@ -29,4 +29,49 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function creatorProfile()
+    {
+        return $this->hasOne(CreatorProfile::class);
+    }
+
+    public function creatorApplications()
+    {
+        return $this->hasMany(CreatorApplication::class);
+    }
+
+    public function roadmaps()
+    {
+        return $this->hasMany(Roadmap::class, 'creator_id');
+    }
+
+    public function roadmapEnrollments()
+    {
+        return $this->hasMany(RoadmapEnrollment::class);
+    }
+
+    public function topicCompletions()
+    {
+        return $this->hasMany(TopicCompletion::class);
+    }
+
+    public function savedRoadmaps()
+    {
+        return $this->hasMany(SavedRoadmap::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function submittedReports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
+    public function receivedReports()
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
 }
