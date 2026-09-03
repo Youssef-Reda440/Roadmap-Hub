@@ -98,7 +98,6 @@ Table roadmap_enrollments {
     }
 }
 
-
 Table topic_completions {
     id bigint [pk]
     user_id  bigint [not null]
