@@ -38,5 +38,6 @@ Thumbs.db
 /docs/MariaDB_Cheatsheet.md
 /docs/BackEnd_Structure/
 /app/Http/Controllers/TestController.php
+/app/Http/Controllers/UserController.php
 /app/Http/Middleware/IsRoadmapHubUser.php
 /scripts
