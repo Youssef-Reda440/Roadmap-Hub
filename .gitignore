@@ -28,9 +28,15 @@ Thumbs.db
 /docs/Tailwind.md
 /docs/Tasks
 /resources/views/hello.blade.php
+/resources/views/welcomeName.blade.php
 /docs/Extensions.md
 /docs/DBML_Syntax.md
 /docs/Our_Steps.md
 /.dbdiagram
 /database-design/schema.dbdiagram
 /docs/.obsidian
+/docs/MariaDB_Cheatsheet.md
+/docs/BackEnd_Structure/
+/app/Http/Controllers/TestController.php
+/app/Http/Middleware/IsRoadmapHubUser.php
+/scripts
