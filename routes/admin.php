@@ -9,33 +9,48 @@ use App\Http\Controllers\Admin\RoadmapReviewController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::get('/admin/users', [UserController::class, 'index']);
-Route::get('/admin/users/{user}', [UserController::class, 'show']);
-Route::patch('/admin/users/{user}', [UserController::class, 'update']);
+        Route::prefix('users')->group(function () {
+            Route::get('/', [UserController::class, 'index']);
+            Route::get('/{user}', [UserController::class, 'show']);
+            Route::patch('/{user}', [UserController::class, 'update']);
+        });
 
-Route::get('/admin/creator-applications', [CreatorApplicationController::class, 'index']);
-Route::get('/admin/creator-applications/{application}', [CreatorApplicationController::class, 'show']);
-Route::patch('/admin/creator-applications/{application}/approve', [CreatorApplicationController::class, 'approve']);
-Route::patch('/admin/creator-applications/{application}/reject', [CreatorApplicationController::class, 'reject']);
+        Route::prefix('creator-applications')->group(function () {
+            Route::get('/', [CreatorApplicationController::class, 'index']);
+            Route::get('/{application}', [CreatorApplicationController::class, 'show']);
+            Route::patch('/{application}/approve', [CreatorApplicationController::class, 'approve']);
+            Route::patch('/{application}/reject', [CreatorApplicationController::class, 'reject']);
+        });
 
-Route::get('/admin/roadmap-reviews', [RoadmapReviewController::class, 'index']);
-Route::get('/admin/roadmap-reviews/{roadmap}', [RoadmapReviewController::class, 'show']);
-Route::patch('/admin/roadmap-reviews/{roadmap}/approve', [RoadmapReviewController::class, 'approve']);
-Route::patch('/admin/roadmap-reviews/{roadmap}/reject', [RoadmapReviewController::class, 'reject']);
-Route::patch('/admin/roadmap-reviews/{roadmap}/request-changes', [RoadmapReviewController::class, 'requestChanges']);
-Route::delete('/admin/roadmaps/{roadmap}', [RoadmapReviewController::class, 'destroy']);
+        Route::prefix('roadmap-reviews')->group(function () {
+            Route::get('/', [RoadmapReviewController::class, 'index']);
+            Route::get('/{roadmap}', [RoadmapReviewController::class, 'show']);
+            Route::patch('/{roadmap}/approve', [RoadmapReviewController::class, 'approve']);
+            Route::patch('/{roadmap}/reject', [RoadmapReviewController::class, 'reject']);
+            Route::patch('/{roadmap}/request-changes', [RoadmapReviewController::class, 'requestChanges']);
+        });
 
-Route::get('/admin/categories', [CategoryController::class, 'index']);
-Route::post('/admin/categories', [CategoryController::class, 'store']);
-Route::get('/admin/categories/{category}', [CategoryController::class, 'show']);
-Route::patch('/admin/categories/{category}', [CategoryController::class, 'update']);
-Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy']);
+        Route::delete('/roadmaps/{roadmap}', [RoadmapReviewController::class, 'destroy']);
 
-Route::get('/admin/reports', [ReportController::class, 'index']);
-Route::get('/admin/reports/{report}', [ReportController::class, 'show']);
-Route::patch('/admin/reports/{report}/resolve', [ReportController::class, 'resolve']);
+        Route::prefix('categories')->group(function () {
+            Route::get('/', [CategoryController::class, 'index']);
+            Route::post('/', [CategoryController::class, 'store']);
+            Route::get('/{category}', [CategoryController::class, 'show']);
+            Route::patch('/{category}', [CategoryController::class, 'update']);
+            Route::delete('/{category}', [CategoryController::class, 'destroy']);
+        });
 
-Route::get('/admin/profile', [ProfileController::class, 'show']);
-Route::patch('/admin/profile', [ProfileController::class, 'update']);
+        Route::prefix('reports')->group(function () {
+            Route::get('/', [ReportController::class, 'index']);
+            Route::get('/{report}', [ReportController::class, 'show']);
+            Route::patch('/{report}/resolve', [ReportController::class, 'resolve']);
+        });
+
+        Route::get('/profile', [ProfileController::class, 'show']);
+        Route::patch('/profile', [ProfileController::class, 'update']);
+    });
