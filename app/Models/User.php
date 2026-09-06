@@ -30,11 +30,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function creatorProfile()
-    {
-        return $this->hasOne(CreatorProfile::class);
-    }
-
     public function creatorApplications()
     {
         return $this->hasMany(CreatorApplication::class);
@@ -48,11 +43,6 @@ class User extends Authenticatable
     public function roadmapEnrollments()
     {
         return $this->hasMany(RoadmapEnrollment::class);
-    }
-
-    public function topicCompletions()
-    {
-        return $this->hasMany(TopicCompletion::class);
     }
 
     public function savedRoadmaps()

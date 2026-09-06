@@ -13,17 +13,16 @@ return new class extends Migration
     {
         Schema::create('resources', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('topic_id')
-                ->constrained('topics')
+            $table->foreignId('roadmap_id')
+                ->constrained('roadmaps')
                 ->cascadeOnDelete();
             $table->string('title');
             $table->text('url');
             $table->enum('type', [
-                'youtube',
+                'video',
                 'documentation',
                 'article',
-                'course',
-                'website',
+                'link',
                 'other',
             ]);
             $table->text('description');

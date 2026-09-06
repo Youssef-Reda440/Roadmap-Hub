@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\Creator\DashboardController;
-use App\Http\Controllers\Creator\ProfileController;
-use App\Http\Controllers\Creator\ReviewController;
 use App\Http\Controllers\Creator\RoadmapController;
-use App\Http\Controllers\Creator\StatisticsController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:creator'])
@@ -20,12 +17,5 @@ Route::middleware(['auth', 'role:creator'])
             Route::patch('/{roadmap}', [RoadmapController::class, 'update']);
             Route::delete('/{roadmap}', [RoadmapController::class, 'destroy']);
             Route::post('/{roadmap}/submit', [RoadmapController::class, 'submit']);
-
-            Route::get('/{roadmap}/statistics', [StatisticsController::class, 'show']);
         });
-
-        Route::get('/reviews', [ReviewController::class, 'index']);
-
-        Route::get('/profile', [ProfileController::class, 'show']);
-        Route::patch('/profile', [ProfileController::class, 'update']);
     });

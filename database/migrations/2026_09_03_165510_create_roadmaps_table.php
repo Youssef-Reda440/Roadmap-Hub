@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->enum('level', ['beginner', 'intermediate', 'advanced']);
-            $table->string('duration')->nullable();
             $table->enum('status', ['draft', 'pending_review', 'published', 'rejected']);
             $table->timestamps();
         });

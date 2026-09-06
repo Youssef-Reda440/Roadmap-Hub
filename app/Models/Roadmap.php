@@ -16,11 +16,6 @@ class Roadmap extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function stages()
-    {
-        return $this->hasMany(Stage::class);
-    }
-
     public function enrollments()
     {
         return $this->hasMany(RoadmapEnrollment::class);

@@ -8,7 +8,7 @@ class Resource extends Model
 {
     public function topic()
     {
-        return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Roadmap::class);
     }
 
     public function reports()
