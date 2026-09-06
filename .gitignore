@@ -29,9 +29,10 @@ Thumbs.db
 /docs/Tasks
 /resources/views/hello.blade.php
 /resources/views/welcomeName.blade.php
+/resources/views/create.blade.php
+/resources/views/index.blade.php
 /docs/Extensions.md
 /docs/DBML_Syntax.md
-/docs/Our_Steps.md
 /.dbdiagram
 /database-design/schema.dbdiagram
 /docs/.obsidian
@@ -41,3 +42,4 @@ Thumbs.db
 /app/Http/Controllers/UserController.php
 /app/Http/Middleware/IsRoadmapHubUser.php
 /scripts
+/public/images/
