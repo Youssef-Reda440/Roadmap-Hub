@@ -8,6 +8,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        //
+        // For testing Blade templates
+        $name = 'Youssef';
+        return view('creator.dashboard', compact('name'));
     }
 }

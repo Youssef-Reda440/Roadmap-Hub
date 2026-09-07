@@ -8,6 +8,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        //
+        // For testing Blade templates
+        return view('public/categories');
     }
 }

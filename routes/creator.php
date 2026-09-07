@@ -4,14 +4,13 @@ use App\Http\Controllers\Creator\DashboardController;
 use App\Http\Controllers\Creator\RoadmapController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth', 'role:creator'])
-    ->prefix('creator')
+Route::prefix('creator')
     ->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('creator.dashboard');
 
         Route::prefix('roadmaps')->group(function () {
-            Route::get('/', [RoadmapController::class, 'index']);
-            Route::get('/create', [RoadmapController::class, 'create']);
+            Route::get('/', [RoadmapController::class, 'index'])->name('creator.roadmaps');
+            Route::get('/create', [RoadmapController::class, 'create'])->name('creator.roadmaps.create');
             Route::post('/', [RoadmapController::class, 'store']);
             Route::get('/{roadmap}/edit', [RoadmapController::class, 'edit']);
             Route::patch('/{roadmap}', [RoadmapController::class, 'update']);
