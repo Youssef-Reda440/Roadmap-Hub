@@ -2,8 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 
+#[Fillable([
+    'creator_id',
+    'category_id',
+    'title',
+    'description',
+    'level',
+    'status',
+])]
 class Roadmap extends Model
 {
     public function creator()
@@ -14,6 +23,11 @@ class Roadmap extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function resources()
+    {
+        return $this->hasMany(Resource::class);
     }
 
     public function enrollments()

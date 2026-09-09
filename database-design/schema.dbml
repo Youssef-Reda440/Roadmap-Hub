@@ -19,6 +19,7 @@ Table creator_applications {
 Table categories {
     id bigint [pk]
     name varchar(255) [unique, not null]
+    slug varchar(255) [unique, not null]
     description text
     created_at timestamp
     updated_at timestamp
