@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('description', 'Roadmap Hub - Learn any field through structured learning roadmaps and trusted resources.')">
+    <meta name="description" content="Roadmap Hub - Learn any field through structured learning roadmaps and trusted resources.">
     <meta name="author" content="Roadmap Hub">
 
     <title>@yield('title', 'Roadmap Hub')</title>
@@ -15,11 +15,11 @@
 </head>
 
 <body>
-    @include('components.navbar')
+    @include('components.navbars.public-navbar')
 
     @yield('content')
 
-    @include('components.footer')
+    @yield('footer')
 </body>
 
 </html>
