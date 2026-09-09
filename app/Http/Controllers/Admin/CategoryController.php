@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
@@ -25,6 +26,7 @@ class CategoryController extends Controller
 
         $category = new Category;
         $category->name = $validated['name'];
+        $category->slug = $this->uniqueSlug($validated['name']);
         $category->description = $validated['description'] ?? null;
         $category->save();
 
@@ -47,6 +49,7 @@ class CategoryController extends Controller
         ]);
 
         $category->name = $validated['name'];
+        $category->slug = $this->uniqueSlug($validated['name'], $category);
         $category->description = $validated['description'] ?? null;
         $category->save();
 
@@ -62,5 +65,26 @@ class CategoryController extends Controller
         $category->delete();
 
         return back()->with('success', 'Category deleted successfully.');
+    }
+
+    /**
+     * Create a URL-friendly, unique slug without requiring the Admin form to submit one.
+     */
+    private function uniqueSlug(string $name, ?Category $ignoredCategory = null): string
+    {
+        $baseSlug = Str::substr(Str::slug($name) ?: 'category', 0, 255);
+        $slug = $baseSlug;
+        $suffix = 2;
+
+        while (Category::query()
+            ->where('slug', $slug)
+            ->when($ignoredCategory, fn ($query) => $query->whereKeyNot($ignoredCategory))
+            ->exists()) {
+            $suffixText = '-' . $suffix;
+            $slug = Str::substr($baseSlug, 0, 255 - Str::length($suffixText)) . $suffixText;
+            $suffix++;
+        }
+
+        return $slug;
     }
 }

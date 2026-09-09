@@ -1,0 +1,31 @@
+:root {
+    --admin-primary: #4f46e5;
+    --admin-primary-dark: #4338ca;
+    --admin-accent: #4f46e5;
+    --admin-accent-soft: #e0e7ff;
+    --admin-background: #f8fafc;
+    --admin-white: #ffffff;
+    --admin-text: #0f172a;
+    --admin-secondary-text: #64748b;
+    --admin-border: #e2e8f0;
+    --admin-neutral-300: #cbd5e1;
+    --admin-neutral-400: #94a3b8;
+    --admin-blue-50: #eef2ff;
+    --admin-blue-100: #e0e7ff;
+    --admin-blue-200: #c7d2fe;
+    --admin-blue-300: #a5b4fc;
+    --admin-yellow-100: #fef3c7;
+    --admin-green-100: #dcfce7;
+    --admin-red-100: #fee2e2;
+    --admin-success: #059669;
+    --admin-danger: #dc2626;
+    --admin-warning-text: #92400e;
+    --admin-page-title-size: 30px;
+    --admin-section-title-size: 18px;
+    --admin-control-height: 44px;
+    --admin-radius-card: 16px;
+    --admin-radius-control: 8px;
+    --admin-shadow-hover: 0 10px 25px -5px rgb(15 23 42 / 5%);
+    --admin-font: 'Instrument Sans', system-ui, sans-serif;
+    --admin-primary-rgb: 79, 70, 229;
+}

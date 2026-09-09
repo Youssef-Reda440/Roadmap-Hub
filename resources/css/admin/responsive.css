@@ -1,0 +1,104 @@
+@media (max-width: 1199.98px) {
+    .studio-nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0;
+        min-height: 72px;
+    }
+
+    .studio-navigation.collapse.show,
+    .studio-navigation.collapsing {
+        display: flex;
+        flex-basis: 100%;
+        align-items: stretch;
+        flex-direction: column;
+        padding: 12px 0;
+    }
+
+    .studio-navigation.collapse.show .navbar-nav,
+    .studio-navigation.collapsing .navbar-nav {
+        width: 100%;
+        align-items: stretch !important;
+    }
+
+    .studio-navigation.collapse.show form,
+    .studio-navigation.collapsing form {
+        margin: 8px 16px 0 !important;
+    }
+
+    .studio-nav-link {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .studio-account {
+        margin: 8px 0 0;
+        padding: 12px 16px;
+        border-top: 1px solid var(--admin-border);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .admin-content {
+        padding: 24px 16px;
+    }
+
+    .admin-footer {
+        padding-inline: 16px;
+    }
+
+    .studio-nav {
+        padding-inline: 16px;
+    }
+
+    .studio-brand {
+        font-size: 22px;
+    }
+
+    .admin-page-heading {
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .admin-page-heading h1,
+    .admin-page-heading h2 {
+        font-size: 24px;
+    }
+
+    .studio-welcome {
+        align-items: flex-start;
+    }
+
+    .admin-panel__header {
+        flex-wrap: wrap;
+    }
+
+    .admin-stat-card__value {
+        font-size: 24px;
+    }
+
+    .admin-filter-bar {
+        align-items: stretch;
+    }
+
+    .admin-filter-bar .admin-search--wide,
+    .admin-filter-select {
+        width: 100%;
+        min-width: 0;
+        flex: auto;
+    }
+
+    .admin-detail-list dt,
+    .admin-detail-list dd {
+        padding-block: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .studio-header *,
+    .admin-app *,
+    .admin-footer * {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}

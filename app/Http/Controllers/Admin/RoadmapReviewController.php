@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Resource;
 use App\Models\Roadmap;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoadmapReviewController extends Controller
 {
@@ -42,24 +43,48 @@ class RoadmapReviewController extends Controller
 
     public function approve(Roadmap $roadmap)
     {
-        if ($roadmap->status !== 'pending_review') {
+        $approved = DB::transaction(function () use ($roadmap): bool {
+            $lockedRoadmap = Roadmap::query()
+                ->lockForUpdate()
+                ->find($roadmap->getKey());
+
+            if (! $lockedRoadmap || $lockedRoadmap->status !== 'pending_review') {
+                return false;
+            }
+
+            $lockedRoadmap->status = 'published';
+            $lockedRoadmap->save();
+
+            return true;
+        });
+
+        if (! $approved) {
             return back()->with('error', 'Only roadmaps pending review can be published.');
         }
-
-        $roadmap->status = 'published';
-        $roadmap->save();
 
         return back()->with('success', 'Roadmap published successfully.');
     }
 
     public function reject(Roadmap $roadmap)
     {
-        if ($roadmap->status !== 'pending_review') {
+        $rejected = DB::transaction(function () use ($roadmap): bool {
+            $lockedRoadmap = Roadmap::query()
+                ->lockForUpdate()
+                ->find($roadmap->getKey());
+
+            if (! $lockedRoadmap || $lockedRoadmap->status !== 'pending_review') {
+                return false;
+            }
+
+            $lockedRoadmap->status = 'rejected';
+            $lockedRoadmap->save();
+
+            return true;
+        });
+
+        if (! $rejected) {
             return back()->with('error', 'Only roadmaps pending review can be rejected.');
         }
-
-        $roadmap->status = 'rejected';
-        $roadmap->save();
 
         return back()->with('success', 'Roadmap rejected successfully.');
     }
