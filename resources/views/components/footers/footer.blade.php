@@ -1,7 +1,6 @@
 <footer class="bg-dark text-light mt-auto">
     <div class="container py-5">
         <div class="row g-4">
-
             {{-- About --}}
             <div class="col-12 col-md-6 col-lg-3">
                 <h5 class="fw-bold mb-3">Roadmap Hub</h5>
@@ -119,7 +118,6 @@
                     Terms of Service
                 </a>
             </div>
-
         </div>
     </div>
 </footer>
