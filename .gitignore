@@ -33,6 +33,7 @@ Thumbs.db
 /resources/views/welcomeName.blade.php
 /resources/views/create.blade.php
 /resources/views/index.blade.php
+/resources/views/Team-Work/
 /database-design/schema.dbdiagram
 /public/images/
 /docs/.obsidian
@@ -43,5 +44,7 @@ Thumbs.db
 /docs/Extensions.md
 /docs/DBML_Syntax.md
 /docs/header.md
+/docs/Important_Files/
+/docs/Datasets/
 /.dbdiagram
 /scripts
