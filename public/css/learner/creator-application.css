@@ -1,0 +1,701 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #2563EB;
+    --dark-blue: #1D4ED8;
+
+    --background: #F8FAFC;
+    --white: #FFFFFF;
+
+    --text: #0F172A;
+    --secondary-text: #64748B;
+
+    --border: #E2E8F0;
+
+    --light-blue: #EFF6FF;
+
+    --success: #15803D;
+    --success-bg: #F0FDF4;
+
+    --warning: #D97706;
+    --warning-bg: #FFFBEB;
+
+    --danger: #DC2626;
+    --danger-bg: #FEF2F2;
+}
+
+
+/* =========================
+   Base
+========================= */
+
+body {
+    font-family: 'Rubik', 'Cairo', sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+}
+
+
+/* =========================
+   Page
+========================= */
+
+.creator-application-page {
+    width: 86%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 60px 0 100px;
+}
+
+
+/* =========================
+   Page Header
+========================= */
+
+.page-header {
+    margin-bottom: 40px;
+}
+
+.page-label {
+    margin-bottom: 8px;
+
+    color: var(--primary-blue);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+}
+
+.page-header h1 {
+    margin-bottom: 12px;
+
+    font-size: 44px;
+    line-height: 1.25;
+}
+
+.page-header p {
+    max-width: 650px;
+
+    color: var(--secondary-text);
+
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   Main Layout
+========================= */
+
+.application-layout {
+    display: grid;
+
+    grid-template-columns: 1.6fr 0.8fr;
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   Main Application Card
+========================= */
+
+.application-card {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.04);
+}
+
+.application-icon {
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 22px;
+
+    border-radius: 16px;
+
+    background: var(--light-blue);
+    color: var(--primary-blue);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+.application-content {
+    margin-bottom: 32px;
+}
+
+.application-content h2 {
+    margin-bottom: 10px;
+
+    font-size: 25px;
+    line-height: 1.4;
+}
+
+.application-content p {
+    max-width: 700px;
+
+    color: var(--secondary-text);
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* =========================
+   Benefits
+========================= */
+
+.benefits {
+    display: flex;
+    flex-direction: column;
+
+    gap: 13px;
+
+    margin-bottom: 32px;
+}
+
+.benefit-item {
+    min-height: 78px;
+
+    padding: 14px 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    transition: 0.2s;
+}
+
+.benefit-item:hover {
+    border-color: #BFDBFE;
+
+    background: #FAFCFF;
+}
+
+.benefit-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: var(--light-blue);
+    color: var(--primary-blue);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+}
+
+.benefit-item h3 {
+    margin-bottom: 4px;
+
+    font-size: 14px;
+}
+
+.benefit-item p {
+    color: var(--secondary-text);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   Application Action
+========================= */
+
+.application-action {
+    padding-top: 25px;
+
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.application-action>div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.application-action strong {
+    font-size: 14px;
+}
+
+.application-action span {
+    color: var(--secondary-text);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.application-action form {
+    flex-shrink: 0;
+}
+
+.apply-btn,
+.apply-again-btn,
+.creator-btn {
+    min-height: 44px;
+
+    padding: 0 20px;
+
+    border-radius: 10px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.apply-btn {
+    border: none;
+
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+.apply-btn:hover {
+    background: var(--dark-blue);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   Side Information
+========================= */
+
+.application-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.info-card {
+    padding: 25px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    box-shadow:
+        0 7px 25px rgba(15, 23, 42, 0.04);
+}
+
+.info-card-icon {
+    width: 44px;
+    height: 44px;
+
+    margin-bottom: 15px;
+
+    border-radius: 12px;
+
+    background: var(--light-blue);
+    color: var(--primary-blue);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+.info-card h2 {
+    margin-bottom: 9px;
+
+    font-size: 17px;
+    line-height: 1.4;
+}
+
+.info-card p {
+    color: var(--secondary-text);
+
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.info-card ul {
+    padding-right: 18px;
+
+    color: var(--secondary-text);
+
+    font-size: 11px;
+    line-height: 2;
+}
+
+.info-card li::marker {
+    color: var(--primary-blue);
+}
+
+
+/* =========================
+   Status Card
+========================= */
+
+.application-status-card {
+    min-height: 300px;
+
+    padding: 50px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.04);
+}
+
+.status-icon {
+    width: 80px;
+    height: 80px;
+
+    flex-shrink: 0;
+
+    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+}
+
+.status-content {
+    max-width: 700px;
+}
+
+.status-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status-content h2 {
+    margin-bottom: 10px;
+
+    font-size: 27px;
+    line-height: 1.4;
+}
+
+.status-content>p {
+    margin-bottom: 22px;
+
+    color: var(--secondary-text);
+
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* =========================
+   Pending
+========================= */
+
+.application-status-card.pending {
+    border-color: #FDE68A;
+}
+
+.pending .status-icon {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+.pending .status-label {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+.status-meta {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 18px;
+
+    color: var(--secondary-text);
+
+    font-size: 11px;
+}
+
+.status-meta span {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+
+/* =========================
+   Approved
+========================= */
+
+.application-status-card.approved {
+    border-color: #BBF7D0;
+}
+
+.approved .status-icon {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.approved .status-label {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.creator-btn {
+    border: none;
+
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+.creator-btn:hover {
+    background: var(--dark-blue);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   Rejected
+========================= */
+
+.application-status-card.rejected {
+    border-color: #FECACA;
+}
+
+.rejected .status-icon {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.rejected .status-label {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.apply-again-btn {
+    border: 1px solid var(--primary-blue);
+
+    background: var(--white);
+    color: var(--primary-blue);
+}
+
+.apply-again-btn:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 950px) {
+
+    .creator-application-page {
+        width: 90%;
+    }
+
+    .application-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .application-info {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .creator-application-page {
+        padding-top: 45px;
+    }
+
+    .page-header {
+        margin-bottom: 30px;
+    }
+
+    .page-header h1 {
+        font-size: 36px;
+    }
+
+    .page-header p {
+        font-size: 14px;
+    }
+
+    .application-card {
+        padding: 25px;
+
+        border-radius: 20px;
+    }
+
+    .application-content h2 {
+        font-size: 22px;
+    }
+
+    .application-action {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+    .application-action form,
+    .apply-btn {
+        width: 100%;
+    }
+
+    .application-info {
+        display: flex;
+    }
+
+    .application-status-card {
+        padding: 35px 25px;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .status-content {
+        max-width: 100%;
+    }
+
+    .status-content h2 {
+        font-size: 23px;
+    }
+
+    .status-meta {
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .page-header h1 {
+        font-size: 31px;
+    }
+
+    .page-header p {
+        font-size: 13px;
+    }
+
+    .application-card {
+        padding: 22px;
+    }
+
+    .application-content h2 {
+        font-size: 20px;
+    }
+
+    .application-content p {
+        font-size: 13px;
+    }
+
+    .benefit-item {
+        align-items: flex-start;
+
+        padding: 13px;
+    }
+
+    .benefit-item h3 {
+        font-size: 13px;
+    }
+
+    .application-status-card {
+        padding: 30px 20px;
+    }
+
+    .status-icon {
+        width: 70px;
+        height: 70px;
+
+        font-size: 29px;
+    }
+
+    .status-content h2 {
+        font-size: 21px;
+    }
+
+    .status-content>p {
+        font-size: 12px;
+    }
+
+    .status-meta {
+        flex-direction: column;
+
+        gap: 9px;
+    }
+
+    .apply-again-btn,
+    .creator-btn {
+        width: 100%;
+    }
+}

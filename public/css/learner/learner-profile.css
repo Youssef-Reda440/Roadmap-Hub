@@ -1,0 +1,687 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #2563EB;
+    --dark-blue: #1D4ED8;
+
+    --background: #F8FAFC;
+    --white: #FFFFFF;
+
+    --text: #0F172A;
+    --secondary-text: #64748B;
+
+    --border: #E2E8F0;
+
+    --success: #15803D;
+    --danger: #DC2626;
+
+    --light-blue: #EFF6FF;
+    --light-danger: #FEF2F2;
+}
+
+
+/* =========================
+   Base
+========================= */
+
+body {
+    font-family: 'Rubik', 'Cairo', sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+
+/* =========================
+   Page
+========================= */
+
+.profile-page {
+    width: 86%;
+    max-width: 1280px;
+
+    margin: 0 auto;
+
+    padding: 65px 0 100px;
+}
+
+
+/* =========================
+   Page Header
+========================= */
+
+.page-header {
+    margin-bottom: 38px;
+}
+
+.page-label {
+    margin-bottom: 8px;
+
+    color: var(--primary-blue);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+}
+
+.page-header h1 {
+    margin-bottom: 10px;
+
+    font-size: 44px;
+    line-height: 1.25;
+    font-weight: 700;
+}
+
+.page-header p {
+    color: var(--secondary-text);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   Main Layout
+========================= */
+
+.profile-layout {
+    display: grid;
+
+    grid-template-columns: 0.9fr 1.4fr;
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+.left-column,
+.right-column {
+    display: flex;
+    flex-direction: column;
+
+    gap: 25px;
+}
+
+
+/* =========================
+   Shared Cards
+========================= */
+
+.profile-card,
+.info-card,
+.stats-card,
+.interests-card,
+.settings-card {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    box-shadow: 0 7px 25px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================
+   Profile Overview
+========================= */
+
+.profile-card {
+    overflow: hidden;
+}
+
+.profile-cover {
+    height: 120px;
+
+    background: linear-gradient(135deg,
+            #DBEAFE,
+            #BFDBFE);
+}
+
+.profile-content {
+    padding: 0 30px 30px;
+
+    text-align: center;
+}
+
+.big-avatar {
+    width: 88px;
+    height: 88px;
+
+    margin: -44px auto 15px;
+
+    border: 5px solid var(--white);
+    border-radius: 50%;
+
+    background: var(--primary-blue);
+    color: var(--white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.profile-content h2 {
+    margin-bottom: 5px;
+
+    font-size: 24px;
+    line-height: 1.3;
+}
+
+.profile-content .role {
+    margin-bottom: 6px;
+
+    color: var(--primary-blue);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.profile-content .email {
+    color: var(--secondary-text);
+
+    font-size: 13px;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   Card Titles
+========================= */
+
+.card-title {
+    padding: 23px 25px 18px;
+}
+
+.card-title h2 {
+    margin-bottom: 5px;
+
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.card-title p {
+    color: var(--secondary-text);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   Personal Information
+========================= */
+
+.info-card {
+    padding-bottom: 25px;
+}
+
+.profile-form {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+
+    padding: 0 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-group label {
+    color: var(--secondary-text);
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    height: 45px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--white);
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-blue);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.form-group input::placeholder {
+    color: #94A3B8;
+}
+
+
+/* Validation */
+
+.form-error {
+    color: var(--danger);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   Form Button
+========================= */
+
+.profile-form .edit-btn {
+    grid-column: 1 / -1;
+
+    width: 100%;
+    height: 45px;
+
+    margin-top: 3px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--primary-blue);
+    color: var(--white);
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.profile-form .edit-btn:hover {
+    background: var(--dark-blue);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   Account Information
+========================= */
+
+.interests-card {
+    padding-bottom: 22px;
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 25px;
+}
+
+.account-info-item {
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-top: 1px solid var(--border);
+}
+
+.account-info-item:first-child {
+    border-top: none;
+}
+
+.account-info-item span {
+    color: var(--secondary-text);
+
+    font-size: 12px;
+}
+
+.account-info-item strong {
+    max-width: 65%;
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-align: left;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   Learning Statistics
+========================= */
+
+.stats-card {
+    padding-bottom: 25px;
+}
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+
+    padding: 0 25px;
+}
+
+.stat-box {
+    min-height: 120px;
+
+    padding: 15px 8px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    text-align: center;
+
+    transition: 0.2s;
+}
+
+.stat-box:hover {
+    border-color: #BFDBFE;
+
+    background: #FAFCFF;
+
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.stat-box strong {
+    color: var(--text);
+
+    font-size: 25px;
+    line-height: 1;
+}
+
+.stat-box span:last-child {
+    color: var(--secondary-text);
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   Logout
+========================= */
+
+.settings-card {
+    padding: 0;
+}
+
+.setting-row {
+    min-height: 82px;
+
+    padding: 18px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.setting-row>div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.setting-row strong {
+    font-size: 14px;
+}
+
+.setting-row span {
+    color: var(--secondary-text);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.setting-row form {
+    flex-shrink: 0;
+}
+
+.setting-btn {
+    padding: 9px 16px;
+
+    border: 1px solid #FECACA;
+    border-radius: 9px;
+
+    background: var(--light-danger);
+    color: var(--danger);
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.setting-btn:hover {
+    background: #FEE2E2;
+
+    border-color: #FCA5A5;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 1100px) {
+
+    .profile-page {
+        width: 90%;
+    }
+
+    .profile-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .left-column {
+        display: grid;
+
+        grid-template-columns: 0.85fr 1.15fr;
+
+        align-items: start;
+    }
+
+    .right-column {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        align-items: start;
+    }
+
+    .stats-card,
+    .settings-card {
+        grid-column: 1 / -1;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .left-column,
+    .right-column {
+        display: flex;
+    }
+
+    .profile-form {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-form .edit-btn {
+        grid-column: auto;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .profile-page {
+        width: 90%;
+
+        padding-top: 45px;
+    }
+
+    .page-header {
+        margin-bottom: 30px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header p {
+        font-size: 14px;
+    }
+
+    .profile-cover {
+        height: 105px;
+    }
+
+    .profile-content {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    .card-title {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .profile-form,
+    .stats-grid,
+    .account-info {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .setting-row {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .page-header h1 {
+        font-size: 30px;
+    }
+
+    .profile-card,
+    .info-card,
+    .stats-card,
+    .interests-card,
+    .settings-card {
+        border-radius: 17px;
+    }
+
+    .profile-content h2 {
+        font-size: 21px;
+    }
+
+    .profile-content .email {
+        font-size: 12px;
+    }
+
+    .card-title h2 {
+        font-size: 18px;
+    }
+
+    .stats-grid {
+        gap: 9px;
+    }
+
+    .stat-box {
+        min-height: 110px;
+    }
+
+    .stat-box strong {
+        font-size: 22px;
+    }
+
+    .account-info-item {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 4px;
+
+        padding: 12px 0;
+    }
+
+    .account-info-item strong {
+        max-width: 100%;
+
+        text-align: right;
+    }
+
+    .setting-row {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .setting-row form,
+    .setting-btn {
+        width: 100%;
+    }
+}
