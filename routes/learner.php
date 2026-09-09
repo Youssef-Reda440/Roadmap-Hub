@@ -10,26 +10,45 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:learner'])
     ->prefix('learner')
+    ->name('learner.')
     ->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index']);
+        // Dashboard
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
 
-        Route::get('/my-learning', [LearningController::class, 'index']);
-        Route::get('/roadmaps/{roadmap}', [LearningController::class, 'show']);
-        Route::post('/roadmaps/{roadmap}/enroll', [LearningController::class, 'enroll']);
+        // Learning
+        Route::get('/my-learning', [LearningController::class, 'index'])
+            ->name('learning.index');
+        Route::get('/roadmaps/{roadmap}', [LearningController::class, 'show'])
+            ->name('learning.show');
+        Route::post('/roadmaps/{roadmap}/enroll', [LearningController::class, 'enroll'])
+            ->name('learning.enroll');
 
-        Route::post('/topics/{topic}/complete', [LearningController::class, 'completeTopic']);
+        // Saved Roadmaps
+        Route::get('/saved-roadmaps', [SavedRoadmapController::class, 'index'])
+            ->name('saved-roadmaps.index');
+        Route::post('/roadmaps/{roadmap}/save', [SavedRoadmapController::class, 'store'])
+            ->name('roadmaps.save');
+        Route::delete('/roadmaps/{roadmap}/save', [SavedRoadmapController::class, 'destroy'])
+            ->name('roadmaps.unsave');
 
-        Route::get('/saved-roadmaps', [SavedRoadmapController::class, 'index']);
-        Route::post('/roadmaps/{roadmap}/save', [SavedRoadmapController::class, 'store']);
-        Route::delete('/roadmaps/{roadmap}/save', [SavedRoadmapController::class, 'destroy']);
+        // Reviews
+        Route::post('/roadmaps/{roadmap}/reviews', [ReviewController::class, 'store'])
+            ->name('reviews.store');
+        Route::patch('/reviews/{review}', [ReviewController::class, 'update'])
+            ->name('reviews.update');
+        Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])
+            ->name('reviews.destroy');
 
-        Route::post('/roadmaps/{roadmap}/reviews', [ReviewController::class, 'store']);
-        Route::patch('/reviews/{review}', [ReviewController::class, 'update']);
-        Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);
+        // Profile
+        Route::get('/profile', [ProfileController::class, 'show'])
+            ->name('profile.show');
+        Route::patch('/profile', [ProfileController::class, 'update'])
+            ->name('profile.update');
 
-        Route::get('/profile', [ProfileController::class, 'show']);
-        Route::patch('/profile', [ProfileController::class, 'update']);
-
-        Route::get('/creator-application', [CreatorApplicationController::class, 'show']);
-        Route::post('/creator-application', [CreatorApplicationController::class, 'store']);
+        // Creator Application
+        Route::get('/creator-application', [CreatorApplicationController::class, 'show'])
+            ->name('creator-application.show');
+        Route::post('/creator-application', [CreatorApplicationController::class, 'store'])
+            ->name('creator-application.store');
     });
