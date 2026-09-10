@@ -56,7 +56,11 @@
                             <div class="col-12">
                                 <label class="form-label" for="profile-role">Account role</label>
                                 <input id="profile-role" class="form-control admin-form-control" type="text"
-                                    value="{{ \Illuminate\Support\Str::headline($user->role) }}" readonly>
+                                    value="{{ \Illuminate\Support\Str::headline($user->role) }}" readonly
+                                    aria-describedby="profile-role-help">
+                                <p class="form-text mb-0" id="profile-role-help">
+                                    Your account role is read-only and cannot be changed from Profile.
+                                </p>
                             </div>
                         </div>
 

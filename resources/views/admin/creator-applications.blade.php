@@ -64,7 +64,8 @@
                                     <td>{{ $listedApplication->created_at?->format('M j, Y') ?? '—' }}</td>
                                     <td>@include('admin.components.status-badge', ['status' => $listedApplication->status])</td>
                                     <td class="text-end">
-                                        <a class="btn admin-btn-secondary btn-sm" href="{{ url('/admin/creator-applications/' . $listedApplication->id) }}">
+                                        <a class="btn admin-btn-secondary btn-sm"
+                                            href="{{ url('/admin/creator-applications/' . $listedApplication->id) }}{{ request()->filled('status') ? '?status=' . urlencode(request('status')) : '' }}">
                                             Review application
                                         </a>
                                     </td>
@@ -88,7 +89,13 @@
                     <h2 class="h5 mb-1">{{ $application->user->name }}&rsquo;s application</h2>
                     <p class="text-secondary small mb-0">Application details and review actions.</p>
                 </div>
-                @include('admin.components.status-badge', ['status' => $application->status])
+                <div class="d-flex align-items-center gap-2">
+                    <a class="btn admin-btn-secondary btn-sm"
+                        href="{{ url('/admin/creator-applications') }}{{ request()->filled('status') ? '?status=' . urlencode(request('status')) : '' }}">
+                        Back to applications
+                    </a>
+                    @include('admin.components.status-badge', ['status' => $application->status])
+                </div>
             </div>
             <div class="card-body">
                 <dl class="admin-detail-list row mb-0">
@@ -103,17 +110,27 @@
                 </dl>
             </div>
             @if ($application->status === 'pending')
-                <div class="card-footer bg-white d-flex flex-wrap justify-content-end gap-2">
-                    <form method="POST" action="{{ url('/admin/creator-applications/' . $application->id . '/reject') }}">
-                        @csrf
-                        @method('PATCH')
-                        <button class="btn admin-btn-danger btn-sm" type="submit">Reject application</button>
-                    </form>
-                    <form method="POST" action="{{ url('/admin/creator-applications/' . $application->id . '/approve') }}">
-                        @csrf
-                        @method('PATCH')
-                        <button class="btn admin-btn-primary btn-sm" type="submit">Approve creator</button>
-                    </form>
+                <div class="card-footer bg-white">
+                    @if ($application->user->role !== 'learner')
+                        <p class="small text-secondary mb-3">
+                            This application cannot be approved because the applicant already has a
+                            {{ \Illuminate\Support\Str::headline($application->user->role) }} role. Only learner accounts can become creators.
+                        </p>
+                    @endif
+                    <div class="d-flex flex-wrap justify-content-end gap-2">
+                        <form method="POST" action="{{ url('/admin/creator-applications/' . $application->id . '/reject') }}">
+                            @csrf
+                            @method('PATCH')
+                            <button class="btn admin-btn-danger btn-sm" type="submit">Reject application</button>
+                        </form>
+                        @if ($application->user->role === 'learner')
+                            <form method="POST" action="{{ url('/admin/creator-applications/' . $application->id . '/approve') }}">
+                                @csrf
+                                @method('PATCH')
+                                <button class="btn admin-btn-primary btn-sm" type="submit">Approve creator</button>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             @endif
         </section>

@@ -64,7 +64,8 @@
                                     <td>@include('admin.components.status-badge', ['status' => $listedRoadmap->status])</td>
                                     <td>{{ $listedRoadmap->created_at?->format('M j, Y') ?? '—' }}</td>
                                     <td class="text-end">
-                                        <a class="btn admin-btn-secondary btn-sm" href="{{ url('/admin/roadmap-reviews/' . $listedRoadmap->id) }}">
+                                        <a class="btn admin-btn-secondary btn-sm"
+                                            href="{{ url('/admin/roadmap-reviews/' . $listedRoadmap->id) }}{{ request()->filled('status') ? '?status=' . urlencode(request('status')) : '' }}">
                                             Review roadmap
                                         </a>
                                     </td>
@@ -88,7 +89,13 @@
                     <span class="admin-summary-card__eyebrow small text-secondary text-uppercase">Roadmap details</span>
                     <h2 class="h4 mt-1 mb-0">{{ $roadmap->title }}</h2>
                 </div>
-                @include('admin.components.status-badge', ['status' => $roadmap->status])
+                <div class="d-flex align-items-center gap-2">
+                    <a class="btn admin-btn-secondary btn-sm"
+                        href="{{ url('/admin/roadmap-reviews') }}{{ request()->filled('status') ? '?status=' . urlencode(request('status')) : '' }}">
+                        Back to roadmaps
+                    </a>
+                    @include('admin.components.status-badge', ['status' => $roadmap->status])
+                </div>
             </div>
 
             <div class="card-body">
@@ -163,8 +170,8 @@
                 </section>
             </div>
 
-            <div class="card-footer bg-white">
-                @if ($roadmap->status === 'pending_review')
+            @if ($roadmap->status === 'pending_review')
+                <div class="card-footer bg-white">
                     <p class="small text-secondary mb-3">
                         Requesting changes is unavailable because review notes and a changes-requested status are not supported by the current schema.
                     </p>
@@ -180,7 +187,9 @@
                             <button class="btn admin-btn-primary btn-sm" type="submit">Publish roadmap</button>
                         </form>
                     </div>
-                @elseif ($roadmap->status === 'published')
+                </div>
+            @elseif ($roadmap->status === 'published')
+                <div class="card-footer bg-white">
                     <div class="admin-form-actions d-flex justify-content-end">
                         <form method="POST" action="{{ url('/admin/roadmaps/' . $roadmap->id) }}">
                             @csrf
@@ -188,8 +197,8 @@
                             <button class="btn admin-btn-danger btn-sm" type="submit">Remove roadmap</button>
                         </form>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
         </section>
     @endisset
 @endsection

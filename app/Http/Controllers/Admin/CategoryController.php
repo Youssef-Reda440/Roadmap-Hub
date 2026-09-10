@@ -10,10 +10,18 @@ use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $validated = $request->validate([
+            'search' => ['nullable', 'string', 'max:255'],
+        ]);
+
         return view('admin.categories', [
-            'categories' => Category::withCount('roadmaps')->orderBy('name')->paginate(15),
+            'categories' => Category::withCount('roadmaps')
+                ->when($validated['search'] ?? null, fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+                ->orderBy('name')
+                ->paginate(15)
+                ->withQueryString(),
         ]);
     }
 
