@@ -9,10 +9,8 @@ use App\Http\Controllers\Admin\RoadmapReviewController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth', 'role:admin'])
-    ->prefix('admin')
-    ->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::middleware(['auth', 'role:admin']) -> prefix('admin') ->group (function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         Route::prefix('users')->group(function () {
             Route::get('/', [UserController::class, 'index']);

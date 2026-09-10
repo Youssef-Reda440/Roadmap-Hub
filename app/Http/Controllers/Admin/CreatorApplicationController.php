@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CreatorApplication;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,29 +33,75 @@ class CreatorApplicationController extends Controller
 
     public function approve(CreatorApplication $application)
     {
-        if ($application->status !== 'pending') {
+        $approvalResult = DB::transaction(function () use ($application): string {
+            $lockedApplication = CreatorApplication::query()
+                ->lockForUpdate()
+                ->find($application->getKey());
+
+            if (! $lockedApplication) {
+                return 'missing';
+            }
+
+            if ($lockedApplication->status !== 'pending') {
+                return 'not_pending';
+            }
+
+            $lockedUser = User::query()
+                ->lockForUpdate()
+                ->find($lockedApplication->user_id);
+
+            if (! $lockedUser) {
+                return 'missing_user';
+            }
+
+            if ($lockedUser->role !== 'learner') {
+                return 'ineligible_role';
+            }
+
+            $lockedApplication->status = 'approved';
+            $lockedApplication->save();
+
+            $lockedUser->role = 'creator';
+            $lockedUser->save();
+
+            return 'approved';
+        });
+
+        if ($approvalResult === 'not_pending') {
             return back()->with('error', 'Only pending applications can be approved.');
         }
 
-        DB::transaction(function () use ($application): void {
-            $application->status = 'approved';
-            $application->save();
+        if ($approvalResult === 'ineligible_role') {
+            return back()->with('error', 'Only learner accounts can be approved as creators.');
+        }
 
-            $application->user->role = 'creator';
-            $application->user->save();
-        });
+        if ($approvalResult !== 'approved') {
+            return back()->with('error', 'Creator application or applicant is no longer available.');
+        }
 
         return back()->with('success', 'Creator application approved successfully.');
     }
 
     public function reject(CreatorApplication $application)
     {
-        if ($application->status !== 'pending') {
+        $rejected = DB::transaction(function () use ($application): bool {
+            $lockedApplication = CreatorApplication::query()
+                ->lockForUpdate()
+                ->find($application->getKey());
+
+            if (! $lockedApplication || $lockedApplication->status !== 'pending') {
+                return false;
+            }
+
+            $lockedApplication->status = 'rejected';
+            $lockedApplication->save();
+
+            return true;
+        });
+
+        if (! $rejected) {
             return back()->with('error', 'Only pending applications can be rejected.');
         }
-
-        $application->status = 'rejected';
-        $application->save();
 
         return back()->with('success', 'Creator application rejected successfully.');
     }
