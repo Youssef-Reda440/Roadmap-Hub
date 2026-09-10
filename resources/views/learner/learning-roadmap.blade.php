@@ -13,7 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="{{ asset('css/learner/learning-roadmap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/learner/learner-navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/style.css') }}">
 @endsection
 
 @section('navigation')

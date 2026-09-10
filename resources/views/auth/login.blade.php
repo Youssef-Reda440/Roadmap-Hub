@@ -8,7 +8,7 @@
 @section('head')
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pages/login.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pages/auth.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/logo.ico') }}">

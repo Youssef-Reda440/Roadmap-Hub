@@ -9,14 +9,14 @@
 
 @section('head')
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/style.css') }}">
 @endsection
 
 @section('content')
     <main>
-        {{--=========================
+        {{-- =========================
             Roadmap Hero
-            ==========================--}}
+            ========================== --}}
         <section class="roadmap-hero">
             <div class="roadmap-hero-container">
                 <div class="roadmap-breadcrumb">
@@ -109,9 +109,9 @@
             </div>
         </section>
 
-        {{--=========================
+        {{-- =========================
             Main Content
-            ==========================--}}
+            ========================== --}}
 
         <div class="roadmap-details-layout">
             <div class="learning-path-wrapper">
@@ -192,9 +192,9 @@
                     @endforelse
                 </div>
 
-                {{--=========================
+                {{-- =========================
                     Reviews
-                    ==========================--}}
+                    ========================== --}}
 
                 <div class="roadmap-reviews-section">
                     <h3>
@@ -344,80 +344,145 @@
                 </div>
             </div>
 
-            {{--=========================
-                Sidebar
-                ==========================--}}
+            {{-- =========================
+    Sidebar
+    ========================== --}}
 
-            <div class="roadmap-sidebar">
-                <div class="sidebar-action-card">
-                    <div class="sidebar-price-tag">
-                        مجاني 100%
-                    </div>
+            @php
+                $showLearnerSidebar = auth()->guest() || auth()->user()->role === 'learner';
+            @endphp
 
-                    <div class="sidebar-action-btns">
-                        {{-- Temporary public action --}}
-                        <a href="{{ route('login') }}" class="saas-btn saas-btn-primary w-100 py-3">
-                            🚀 ابدأ متابعة المسار الآن
-                        </a>
+            @if ($showLearnerSidebar)
+                <div class="roadmap-sidebar">
 
-                        {{-- Temporary UI button --}}
-                        <button type="button" class="saas-btn saas-btn-secondary w-100"
-                            onclick="alert('سيتم تفعيل الحفظ بعد ربط الـ Saved Roadmaps بالـ Backend.')">
-                            ⭐ حفظ في المفضلة
-                        </button>
-                    </div>
-
-                    <ul class="sidebar-features-list">
-                        <li>
-                            <span>✓</span>
-                            الوصول إلى جميع المصادر المتاحة للمسار
-                        </li>
-
-                        <li>
-                            <span>✓</span>
-                            مصادر تعليمية مختارة ومنظمة
-                        </li>
-
-                        <li>
-                            <span>✓</span>
-                            مراجعات وتقييمات من المتعلمين
-                        </li>
-
-                        <li>
-                            <span>✓</span>
-                            إمكانية متابعة المسار بعد تسجيل الدخول
-                        </li>
-                    </ul>
-                </div>
-
-                {{-- Creator Information --}}
-                <div class="sidebar-creator-card">
-                    <h4>
-                        مُعد المسار
-                    </h4>
-
-                    <div class="sidebar-creator-flex">
-                        <div class="sidebar-creator-avatar">
-                            {{ strtoupper(substr($roadmap->creator->name, 0, 1)) }}
+                    <div class="sidebar-action-card">
+                        <div class="sidebar-price-tag">
+                            مجاني 100%
                         </div>
 
-                        <div class="sidebar-creator-details">
-                            <h5>
-                                {{ $roadmap->creator->name }}
-                            </h5>
+                        <div class="sidebar-action-btns">
 
-                            <p>
-                                Creator
-                            </p>
+                            @guest
+                                {{-- Guest: Login before enrolling --}}
+                                <a href="{{ route('login') }}" class="saas-btn saas-btn-primary w-100 py-3">
+                                    🚀 ابدأ متابعة المسار الآن
+                                </a>
+
+                                {{-- Guest: Login before saving --}}
+                                <a href="{{ route('login') }}" class="saas-btn saas-btn-secondary w-100">
+                                    ☆ حفظ في المفضلة
+                                </a>
+                            @endguest
+
+                            @auth
+                                @if (auth()->user()->role === 'learner')
+                                    @php
+                                        $isEnrolled = auth()
+                                            ->user()
+                                            ->roadmapEnrollments()
+                                            ->where('roadmap_id', $roadmap->id)
+                                            ->exists();
+
+                                        $isSaved = auth()
+                                            ->user()
+                                            ->savedRoadmaps()
+                                            ->where('roadmap_id', $roadmap->id)
+                                            ->exists();
+                                    @endphp
+
+                                    {{-- Enrollment --}}
+                                    @if ($isEnrolled)
+                                        <a href="{{ route('learner.learning.show', $roadmap) }}"
+                                            class="saas-btn saas-btn-primary w-100 py-3">
+                                            ▶ متابعة المسار
+                                        </a>
+                                    @else
+                                        <form method="POST" action="{{ route('learner.learning.enroll', $roadmap) }}">
+                                            @csrf
+
+                                            <button type="submit" class="saas-btn saas-btn-primary w-100 py-3">
+                                                🚀 ابدأ متابعة المسار الآن
+                                            </button>
+                                        </form>
+                                    @endif
+
+                                    {{-- Saved Roadmap --}}
+                                    @if ($isSaved)
+                                        <form method="POST" action="{{ route('learner.roadmaps.unsave', $roadmap) }}">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="saas-btn saas-btn-secondary w-100">
+                                                ⭐ إزالة من المفضلة
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form method="POST" action="{{ route('learner.roadmaps.save', $roadmap) }}">
+                                            @csrf
+
+                                            <button type="submit" class="saas-btn saas-btn-secondary w-100">
+                                                ☆ حفظ في المفضلة
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endif
+                            @endauth
+
                         </div>
+
+                        <ul class="sidebar-features-list">
+                            <li>
+                                <span>✓</span>
+                                الوصول إلى جميع المصادر المتاحة للمسار
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                مصادر تعليمية مختارة ومنظمة
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                مراجعات وتقييمات من المتعلمين
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                إمكانية متابعة المسار بعد تسجيل الدخول
+                            </li>
+                        </ul>
                     </div>
 
-                    <p class="text-muted small mb-0">
-                        صانع المسار المسؤول عن إعداد وتنظيم المحتوى
-                        والمصادر التعليمية الموجودة داخله.
-                    </p>
+                    {{-- Creator Information --}}
+                    <div class="sidebar-creator-card">
+                        <h4>
+                            مُعد المسار
+                        </h4>
+
+                        <div class="sidebar-creator-flex">
+                            <div class="sidebar-creator-avatar">
+                                {{ strtoupper(substr($roadmap->creator->name, 0, 1)) }}
+                            </div>
+
+                            <div class="sidebar-creator-details">
+                                <h5>
+                                    {{ $roadmap->creator->name }}
+                                </h5>
+
+                                <p>
+                                    Creator
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="text-muted small mb-0">
+                            صانع المسار المسؤول عن إعداد وتنظيم المحتوى
+                            والمصادر التعليمية الموجودة داخله.
+                        </p>
+                    </div>
+
                 </div>
-            </div>
+            @endif
         </div>
     </main>
 @endsection

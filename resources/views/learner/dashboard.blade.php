@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/learner/learner-dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/learner/learner-navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/style.css') }}">
 @endsection
 
 @section('navigation')
