@@ -26,16 +26,8 @@ Homestead.json
 Homestead.yaml
 /.claude/
 Thumbs.db
-/app/Http/Controllers/TestController.php
-/app/Http/Controllers/UserController.php
 /app/Http/Middleware/IsRoadmapHubUser.php
-/resources/views/hello.blade.php
-/resources/views/welcomeName.blade.php
-/resources/views/create.blade.php
-/resources/views/index.blade.php
-/resources/views/Team-Work/
 /database-design/schema.dbdiagram
-/public/images/
 /docs/.obsidian
 /docs/BackEnd_Structure/
 /docs/MariaDB_Cheatsheet.md
