@@ -16,64 +16,14 @@
 
                 <ul class="list-unstyled mb-0">
                     <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">
+                        <a href="{{ route('roadmaps.index') }}" class="text-light text-decoration-none">
                             Roadmaps
                         </a>
                     </li>
 
                     <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">
+                        <a href="{{ route('categories.index') }}" class="text-light text-decoration-none">
                             Categories
-                        </a>
-                    </li>
-
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">
-                            Creators
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            {{-- For Creators --}}
-            <div class="col-6 col-md-6 col-lg-2">
-                <h6 class="fw-bold mb-3">For Creators</h6>
-
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">
-                            Become a Creator
-                        </a>
-                    </li>
-
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">
-                            Creator Guidelines
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            {{-- Support --}}
-            <div class="col-6 col-md-6 col-lg-2">
-                <h6 class="fw-bold mb-3">Support</h6>
-
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">
-                            Help Center
-                        </a>
-                    </li>
-
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">
-                            Report an Issue
-                        </a>
-                    </li>
-
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">
-                            Contact Us
                         </a>
                     </li>
                 </ul>
@@ -84,40 +34,26 @@
                 <h6 class="fw-bold mb-3">Follow Us</h6>
 
                 <div class="d-flex gap-3">
-                    <a href="#" class="text-light fs-5" aria-label="GitHub">
+                    <a href="https://github.com/Youssef-Reda440/Roadmap-Hub" target="_blank" rel="noopener noreferrer" class="text-light fs-5"
+                        aria-label="GitHub">
                         <i class="fa-brands fa-github"></i>
                     </a>
 
-                    <a href="#" class="text-light fs-5" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/youssef-reda-aa079a33b" target="_blank" rel="noopener noreferrer" class="text-light fs-5"
+                        aria-label="LinkedIn">
                         <i class="fa-brands fa-linkedin"></i>
-                    </a>
-
-                    <a href="#" class="text-light fs-5" aria-label="YouTube">
-                        <i class="fa-brands fa-youtube"></i>
                     </a>
                 </div>
             </div>
-
         </div>
 
         <hr class="border-secondary my-4">
 
         {{-- Bottom --}}
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-
             <p class="mb-0 text-light-emphasis">
                 © 2026 Roadmap Hub. All rights reserved.
             </p>
-
-            <div class="d-flex gap-3">
-                <a href="#" class="text-light text-decoration-none">
-                    Privacy Policy
-                </a>
-
-                <a href="#" class="text-light text-decoration-none">
-                    Terms of Service
-                </a>
-            </div>
         </div>
     </div>
 </footer>
