@@ -27,7 +27,7 @@ VALUES
 ),
 (
     'Youssef',
-    'youssef@roadmaphub.test',
+    'joo@roadmaphub.test',
     '\$2y\$12\$D1rIb22NpglWT07DH3v2wOroa8g8sGX94FrRH2iTQ7Hs8TUyZdIyC',
     'learner',
     NOW(),
