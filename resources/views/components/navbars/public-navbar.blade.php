@@ -1,13 +1,34 @@
 <nav class="saas-navbar">
     <div class="saas-nav-container">
         <div class="saas-nav-actions">
-            <a href="{{ route('login') }}" class="saas-btn-nav-login">
-                تسجيل دخول
-            </a>
+            @guest
+                <a href="{{ route('login') }}" class="saas-btn-nav-login">
+                    تسجيل دخول
+                </a>
 
-            <a href="{{ route('register') }}" class="saas-btn-nav-register">
-                إنشاء حساب
-            </a>
+                <a href="{{ route('register') }}" class="saas-btn-nav-register">
+                    إنشاء حساب
+                </a>
+            @endguest
+
+            @auth
+                @if (auth()->user()->role === 'learner')
+                    <a href="{{ route('learner.dashboard') }}" class="saas-btn-nav-login">
+                        لوحة التحكم
+                    </a>
+                @elseif(auth()->user()->role === 'creator')
+                    <a href="{{ route('creator.dashboard') }}" class="saas-btn-nav-login">
+                        لوحة التحكم
+                    </a>
+                @endif
+
+                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                    @csrf
+                    <button type="submit" class="saas-btn-nav-register">
+                        تسجيل خروج
+                    </button>
+                </form>
+            @endauth
         </div>
 
         <button class="saas-nav-toggle" id="navToggleBtn" aria-label="تبديل القائمة">

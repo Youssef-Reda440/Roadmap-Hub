@@ -54,8 +54,6 @@
                         متعلم
                     </span>
                 </div>
-
-                <i class="bi bi-chevron-down learner-profile-arrow"></i>
             </a>
         </div>
     </div>
