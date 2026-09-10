@@ -27,15 +27,14 @@
         </a>
     </section>
 
-    <section class="row g-4 mb-4" aria-label="Platform statistics">
+    <section class="admin-dashboard-metrics row g-4 mb-5" aria-label="Platform statistics">
         <div class="col-12 col-sm-6 col-xl-3">
             <article class="admin-stat-card card h-100 border-0 shadow-sm">
                 <div class="card-body">
-                    <div class="admin-stat-card__top d-flex align-items-center justify-content-between">
-                        <span class="admin-stat-card__label text-secondary">Total users</span>
-                        <span class="admin-stat-card__icon text-primary"><i class="bi bi-people" aria-hidden="true"></i></span>
-                    </div>
-                    <p class="admin-stat-card__value display-6 fw-semibold mb-0">{{ number_format($totalUsers) }}</p>
+                    <span class="admin-stat-card__icon text-primary"><i class="bi bi-people" aria-hidden="true"></i></span>
+                    <p class="admin-stat-card__value mb-0">{{ number_format($totalUsers) }}</p>
+                    <span class="admin-stat-card__label text-secondary">Total users</span>
+                    <span class="admin-stat-card__meta admin-stat-card__meta--placeholder" aria-hidden="true"></span>
                 </div>
             </article>
         </div>
@@ -43,11 +42,10 @@
         <div class="col-12 col-sm-6 col-xl-3">
             <article class="admin-stat-card card h-100 border-0 shadow-sm">
                 <div class="card-body">
-                    <div class="admin-stat-card__top d-flex align-items-center justify-content-between">
-                        <span class="admin-stat-card__label text-secondary">Active creators</span>
-                        <span class="admin-stat-card__icon text-primary"><i class="bi bi-person-video3" aria-hidden="true"></i></span>
-                    </div>
-                    <p class="admin-stat-card__value display-6 fw-semibold mb-0">{{ number_format($totalCreators) }}</p>
+                    <span class="admin-stat-card__icon text-primary"><i class="bi bi-person-video3" aria-hidden="true"></i></span>
+                    <p class="admin-stat-card__value mb-0">{{ number_format($totalCreators) }}</p>
+                    <span class="admin-stat-card__label text-secondary">Active creators</span>
+                    <span class="admin-stat-card__meta admin-stat-card__meta--placeholder" aria-hidden="true"></span>
                 </div>
             </article>
         </div>
@@ -55,11 +53,10 @@
         <div class="col-12 col-sm-6 col-xl-3">
             <article class="admin-stat-card card h-100 border-0 shadow-sm">
                 <div class="card-body">
-                    <div class="admin-stat-card__top d-flex align-items-center justify-content-between">
-                        <span class="admin-stat-card__label text-secondary">Total roadmaps</span>
-                        <span class="admin-stat-card__icon text-primary"><i class="bi bi-map" aria-hidden="true"></i></span>
-                    </div>
-                    <p class="admin-stat-card__value display-6 fw-semibold mb-0">{{ number_format($totalRoadmaps) }}</p>
+                    <span class="admin-stat-card__icon text-primary"><i class="bi bi-map" aria-hidden="true"></i></span>
+                    <p class="admin-stat-card__value mb-0">{{ number_format($totalRoadmaps) }}</p>
+                    <span class="admin-stat-card__label text-secondary">Total roadmaps</span>
+                    <span class="admin-stat-card__meta admin-stat-card__meta--placeholder" aria-hidden="true"></span>
                 </div>
             </article>
         </div>
@@ -67,13 +64,13 @@
         <div class="col-12 col-sm-6 col-xl-3">
             <article class="admin-stat-card card h-100 border-0 shadow-sm">
                 <div class="card-body">
-                    <div class="admin-stat-card__top d-flex align-items-center justify-content-between">
-                        <span class="admin-stat-card__label text-secondary">Pending reports</span>
-                        <span class="admin-stat-card__icon text-danger"><i class="bi bi-flag" aria-hidden="true"></i></span>
+                    <span class="admin-stat-card__icon text-danger"><i class="bi bi-flag" aria-hidden="true"></i></span>
+                    <p class="admin-stat-card__value mb-0">{{ number_format($pendingReports) }}</p>
+                    <span class="admin-stat-card__label text-secondary">Pending reports</span>
+                    <div class="admin-stat-card__meta">
+                        <span class="admin-status-badge badge bg-warning text-dark">Needs review</span>
+                        <small class="text-secondary">Average rating: {{ number_format((float) $averageRating, 1) }} / 5</small>
                     </div>
-                    <p class="admin-stat-card__value display-6 fw-semibold mb-2">{{ number_format($pendingReports) }}</p>
-                    <span class="admin-status-badge badge bg-warning text-dark">Needs review</span>
-                    <small class="d-block text-secondary mt-2">Average rating: {{ number_format((float) $averageRating, 1) }} / 5</small>
                 </div>
             </article>
         </div>
@@ -81,16 +78,16 @@
 
     <section class="row g-4">
         <div class="col-12 col-xl-7">
-            <article class="admin-panel card h-100 border-0 shadow-sm">
+            <article class="admin-panel admin-dashboard-activity card border-0 shadow-sm">
                 <div class="card-body">
                     <div class="admin-panel__header d-flex align-items-center justify-content-between mb-3">
                         <h2 class="admin-panel__title h4 mb-0">Recent activity</h2>
                         <a class="admin-panel__link small" href="{{ url('/admin/reports') }}">View reports</a>
                     </div>
 
-                    <section class="admin-empty-state border rounded-3 bg-light p-5 text-center">
-                        <i class="bi bi-activity display-6 text-secondary" aria-hidden="true"></i>
-                        <h3 class="h5 mt-3 mb-2">No recent activity available</h3>
+                    <section class="admin-empty-state admin-dashboard-empty-state border rounded-3 bg-light text-center">
+                        <i class="bi bi-activity fs-3 text-secondary" aria-hidden="true"></i>
+                        <h3 class="h5 mt-2 mb-1">No recent activity available</h3>
                         <p class="text-secondary mb-0">The dashboard currently provides platform metrics only.</p>
                     </section>
                 </div>
@@ -104,14 +101,14 @@
                         <h2 class="admin-panel__title h4 mb-0">Needs your attention</h2>
                     </div>
 
-                    <div class="d-grid gap-3">
+                    <div class="admin-dashboard-attention d-grid gap-3">
                         <a class="admin-action-card btn btn-outline-primary text-start d-flex align-items-center justify-content-between"
                             href="{{ url('/admin/creator-applications?status=pending') }}">
                             <span>
                                 <strong class="d-block">Creator applications</strong>
                                 <small>{{ number_format($pendingCreatorApplications) }} applications awaiting review</small>
                             </span>
-                            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                            <i class="admin-action-card__arrow bi bi-arrow-right" aria-hidden="true"></i>
                         </a>
 
                         <a class="admin-action-card btn btn-outline-primary text-start d-flex align-items-center justify-content-between"
@@ -120,7 +117,7 @@
                                 <strong class="d-block">Roadmap reviews</strong>
                                 <small>{{ number_format($pendingRoadmaps) }} roadmaps awaiting a decision</small>
                             </span>
-                            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                            <i class="admin-action-card__arrow bi bi-arrow-right" aria-hidden="true"></i>
                         </a>
 
                         <a class="admin-action-card btn btn-outline-primary text-start d-flex align-items-center justify-content-between"
@@ -129,7 +126,7 @@
                                 <strong class="d-block">New reports</strong>
                                 <small>{{ number_format($pendingReports) }} reports need follow-up</small>
                             </span>
-                            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                            <i class="admin-action-card__arrow bi bi-arrow-right" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>

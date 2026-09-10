@@ -160,18 +160,26 @@
 
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="user-role-edit">Role</label>
-                        <select class="form-select @error('role') is-invalid @enderror" id="user-role-edit" name="role" required>
+                        <select class="form-select @error('role') is-invalid @enderror" id="user-role-edit" name="role"
+                            @if ($user->is(auth()->user())) disabled aria-describedby="user-role-restriction" @else required @endif>
                             @foreach (['learner' => 'Learner', 'creator' => 'Creator', 'admin' => 'Admin'] as $value => $label)
                                 <option value="{{ $value }}" @selected(old('role', $user->role) === $value)>{{ $label }}</option>
                             @endforeach
                         </select>
+                        @if ($user->is(auth()->user()))
+                            <input name="role" type="hidden" value="{{ $user->role }}">
+                            <p class="form-text mb-0" id="user-role-restriction">Your own administrator role cannot be changed.</p>
+                        @else
+                            <p class="form-text mb-0">The final administrator account cannot be changed to another role.</p>
+                        @endif
                         @error('role')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-12 d-flex justify-content-end gap-2">
-                        <a class="btn admin-btn-secondary btn-outline-secondary" href="{{ url('/admin/users') }}">Close</a>
+                        <a class="btn admin-btn-secondary btn-outline-secondary"
+                            href="{{ url('/admin/users') }}{{ request()->getQueryString() ? '?' . request()->getQueryString() : '' }}">Close</a>
                         <button class="btn admin-btn-primary btn-primary" type="submit">Save changes</button>
                     </div>
                 </form>

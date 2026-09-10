@@ -10,22 +10,63 @@
             <h1 class="h2 mb-1">Manage categories</h1>
             <p class="text-secondary mb-0">Organize topics and help learners discover the right roadmaps.</p>
         </div>
-        <button class="btn admin-btn-primary" type="button" disabled
-            title="Adding categories is temporarily unavailable while slug support is being completed.">
+        <button class="btn admin-btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#create-category-form"
+            aria-expanded="{{ old('form_context') === 'create-category' ? 'true' : 'false' }}" aria-controls="create-category-form">
             Add category
         </button>
     </section>
 
+    <section class="collapse {{ old('form_context') === 'create-category' ? 'show' : '' }}" id="create-category-form">
+        <div class="admin-panel card shadow-sm border-0 mb-4">
+            <div class="card-header bg-white">
+                <h2 class="h5 mb-1">Add category</h2>
+                <p class="small text-secondary mb-0">Create a category for organizing roadmaps.</p>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url('/admin/categories') }}">
+                    @csrf
+                    <input name="form_context" type="hidden" value="create-category">
+
+                    <div class="mb-3">
+                        <label class="form-label" for="new-category-name">Category name</label>
+                        <input id="new-category-name" class="form-control admin-form-control @error('name') is-invalid @enderror"
+                            name="name" type="text" value="{{ old('name') }}" required>
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-0">
+                        <label class="form-label" for="new-category-description">Description</label>
+                        <textarea id="new-category-description" class="form-control admin-form-control @error('description') is-invalid @enderror"
+                            name="description" rows="4">{{ old('description') }}</textarea>
+                        @error('description')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="admin-form-actions d-flex justify-content-end gap-2 mt-4">
+                        <button class="btn admin-btn-secondary" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#create-category-form">Cancel</button>
+                        <button class="btn admin-btn-primary" type="submit">Create category</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <section class="admin-panel card shadow-sm border-0">
         <div class="card-body p-0">
-            <div class="admin-filter-bar border-bottom p-3 d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+            <form class="admin-filter-bar border-bottom p-3 d-flex flex-column flex-sm-row align-items-sm-center gap-2" method="GET"
+                action="{{ url('/admin/categories') }}">
                 <label class="admin-search admin-search--wide input-group mb-0">
                     <span class="input-group-text bg-white"><i class="bi bi-search" aria-hidden="true"></i></span>
-                    <input class="form-control" type="search" placeholder="Search categories" disabled
-                        title="Category search is not available yet.">
+                    <input class="form-control" name="search" type="search" value="{{ request('search', '') }}"
+                        placeholder="Search categories">
                 </label>
-                <button class="btn admin-btn-secondary" type="button" disabled>Reset</button>
-            </div>
+                <button class="btn admin-btn-primary" type="submit">Search</button>
+                <a class="btn admin-btn-secondary" href="{{ url('/admin/categories') }}">Reset</a>
+            </form>
 
             @if ($categories->isEmpty())
                 <div class="p-4">
@@ -58,7 +99,7 @@
                                     <td>{{ $listedCategory->created_at?->format('M j, Y') ?? '—' }}</td>
                                     <td class="text-end">
                                         <a class="btn admin-btn-secondary btn-sm"
-                                            href="{{ url('/admin/categories/' . $listedCategory->id) }}">
+                                            href="{{ url('/admin/categories/' . $listedCategory->id) }}{{ request()->filled('search') ? '?search=' . urlencode(request('search')) : '' }}">
                                             Edit
                                         </a>
                                     </td>
@@ -119,9 +160,13 @@
                         </form>
                     @else
                         <button class="btn admin-btn-danger" type="button" disabled
-                            title="Categories with roadmaps cannot be deleted.">
+                            title="Cannot delete category because it has linked roadmaps."
+                            aria-describedby="delete-category-unavailable">
                             Delete category
                         </button>
+                        <p class="small text-secondary mt-2 mb-0" id="delete-category-unavailable">
+                            Cannot delete category because it has linked roadmaps.
+                        </p>
                     @endif
                 </div>
             </div>

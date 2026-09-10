@@ -12,7 +12,7 @@
 
     <section class="admin-panel card shadow-sm border-0">
         <div class="card-body p-0">
-            <div class="admin-filter-bar border-bottom p-3 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+            <div class="admin-filter-bar border-bottom p-3">
                 <nav class="admin-status-tabs nav nav-pills gap-2" aria-label="Report status filters">
                     <a class="btn admin-btn-tab {{ request()->filled('status') ? '' : 'is-active active' }}"
                         href="{{ url('/admin/reports') }}">All</a>
@@ -21,14 +21,6 @@
                             href="{{ url('/admin/reports?status=' . $status) }}">{{ $label }}</a>
                     @endforeach
                 </nav>
-
-                <div>
-                    <label class="visually-hidden" for="report-type-filter">Report type</label>
-                    <select id="report-type-filter" class="form-select admin-form-control admin-filter-select" disabled
-                        title="Report type filtering is not available yet.">
-                        <option>All report types</option>
-                    </select>
-                </div>
             </div>
 
             @if ($reports->isEmpty())
@@ -70,7 +62,8 @@
                                     <td>{{ $listedReport->created_at?->format('M j, Y') ?? '—' }}</td>
                                     <td>@include('admin.components.status-badge', ['status' => $listedReport->status])</td>
                                     <td class="text-end">
-                                        <a class="btn admin-btn-secondary btn-sm" href="{{ url('/admin/reports/' . $listedReport->id) }}">
+                                        <a class="btn admin-btn-secondary btn-sm"
+                                            href="{{ url('/admin/reports/' . $listedReport->id) }}{{ request()->filled('status') ? '?status=' . urlencode(request('status')) : '' }}">
                                             Review
                                         </a>
                                     </td>
@@ -100,7 +93,13 @@
                     <h2 class="h5 mb-1">Report details</h2>
                     <p class="small text-secondary mb-0">Review the reported content and its submitted reason.</p>
                 </div>
-                @include('admin.components.status-badge', ['status' => $report->status])
+                <div class="d-flex align-items-center gap-2">
+                    <a class="btn admin-btn-secondary btn-sm"
+                        href="{{ url('/admin/reports') }}{{ request()->filled('status') ? '?status=' . urlencode(request('status')) : '' }}">
+                        Back to reports
+                    </a>
+                    @include('admin.components.status-badge', ['status' => $report->status])
+                </div>
             </div>
             <div class="card-body">
                 <dl class="admin-detail-list row mb-0">

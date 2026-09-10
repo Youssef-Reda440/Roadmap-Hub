@@ -151,6 +151,29 @@ test('admin creates categories with a generated unique slug and validates duplic
         ->assertSessionHasErrors('name');
 });
 
+test('admin can search categories and pagination retains the search query', function () {
+    $admin = adminUser();
+
+    foreach (range(1, 16) as $number) {
+        $category = new Category;
+        $category->name = "Web Topic {$number}";
+        $category->slug = "web-topic-{$number}";
+        $category->save();
+    }
+
+    $otherCategory = new Category;
+    $otherCategory->name = 'Mobile Development';
+    $otherCategory->slug = 'mobile-development';
+    $otherCategory->save();
+
+    $this->actingAs($admin)
+        ->get('/admin/categories?search=Web')
+        ->assertOk()
+        ->assertViewHas('categories', fn ($categories) => $categories->total() === 16
+            && ! $categories->contains($otherCategory)
+            && str_contains($categories->url(2), 'search=Web'));
+});
+
 test('admin updates category slugs and cannot delete categories linked to roadmaps', function () {
     $admin = adminUser();
     $category = category();
