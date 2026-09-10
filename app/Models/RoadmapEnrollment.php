@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class RoadmapEnrollment extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'roadmap_id',
+        'saved_at',
+    ];
+
     public $timestamps = false;
 
     protected function casts(): array
