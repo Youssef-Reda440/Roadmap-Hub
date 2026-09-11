@@ -1,0 +1,72 @@
+# Base PHP + FrankenPHP
+
+FROM dunglas/frankenphp:1-php8.4-bookworm AS base
+
+RUN install-php-extensions \
+    pdo_mysql \
+    mbstring \
+    intl \
+    zip
+
+WORKDIR /app
+
+
+# Composer dependencies
+
+FROM base AS composer-dependencies
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+COPY composer.json composer.lock ./
+
+RUN composer install \
+    --no-dev \
+    --no-interaction \
+    --no-progress \
+    --prefer-dist \
+    --optimize-autoloader
+
+
+# Frontend build
+
+FROM node:24-alpine AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+
+RUN npm ci
+
+COPY resources ./resources
+COPY public ./public
+COPY vite.config.js ./
+
+RUN npm run build
+
+
+# Production image
+
+FROM base AS production
+
+COPY --from=composer-dependencies /app/vendor ./vendor
+COPY . .
+
+COPY --from=frontend /app/public/build ./public/build
+
+RUN mkdir -p \
+    storage/framework/cache \
+    storage/framework/sessions \
+    storage/framework/views \
+    bootstrap/cache \
+    && chown -R www-data:www-data \
+        storage \
+        bootstrap/cache
+
+USER www-data
+
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+
+EXPOSE 80
+
+CMD ["frankenphp", "php-server", "--root", "/app/public", "--listen", ":80"]
