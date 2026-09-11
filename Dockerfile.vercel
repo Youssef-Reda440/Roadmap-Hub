@@ -27,6 +27,12 @@ RUN composer install \
     --no-scripts \
     --optimize-autoloader
 
+COPY . .
+
+RUN composer dump-autoload \
+    --no-dev \
+    --classmap-authoritative
+
 
 # Frontend build
 
@@ -49,15 +55,9 @@ RUN npm run build
 
 FROM base AS production
 
-COPY --from=composer-dependencies /app/vendor ./vendor
-
-COPY . .
+COPY --from=composer-dependencies /app ./
 
 COPY --from=frontend /app/public/build ./public/build
-
-RUN composer dump-autoload \
-    --no-dev \
-    --classmap-authoritative
 
 RUN mkdir -p \
     storage/framework/cache \
