@@ -75,11 +75,11 @@
                     </span>
 
                     <a href="{{ route('roadmaps.index', ['search' => 'Frontend']) }}" class="hero-tag-link">
-                        Frontend React
+                        Frontend
                     </a>
 
                     <a href="{{ route('roadmaps.index', ['search' => 'Backend']) }}" class="hero-tag-link">
-                        Backend Laravel
+                        Backend
                     </a>
 
                     <a href="{{ route('roadmaps.index', ['search' => 'AI']) }}" class="hero-tag-link">
