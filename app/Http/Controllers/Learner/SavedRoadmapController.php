@@ -53,14 +53,14 @@ class SavedRoadmapController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        $deleted = $user->savedRoadmaps()
+        $savedRoadmap = $user->savedRoadmaps()
             ->where('roadmap_id', $roadmap->id)
-            ->delete();
+            ->firstOrFail();
 
-        if (!$deleted) {
-            return back()->with('info', 'المسار غير موجود في المحفوظات.');
-        }
+        $savedRoadmap->delete();
 
-        return back()->with('success', 'تم إزالة المسار من المحفوظات.');
+        return redirect()
+            ->route('learner.saved-roadmaps.index')
+            ->with('success', 'تم إزالة المسار من المحفوظات.');
     }
 }

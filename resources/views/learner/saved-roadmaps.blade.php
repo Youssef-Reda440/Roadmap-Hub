@@ -25,9 +25,7 @@
 
         {{-- Header --}}
         <section class="page-header">
-
             <div>
-
                 <p class="page-label">
                     مجموعتك
                 </p>

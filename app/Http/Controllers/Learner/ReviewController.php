@@ -77,7 +77,7 @@ class ReviewController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        abort_unless($review->user_id === $user->id, 403);
+        abort_unless($review->user_id === $user->id, 404);
 
         $review->delete();
 
