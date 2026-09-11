@@ -10,14 +10,17 @@
         </ol>
     </nav>
 
-    <section class="admin-page-heading d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-4">
+    <section
+        class="admin-page-heading d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-4">
         <div class="studio-welcome d-flex align-items-center gap-3">
-            <span class="admin-avatar studio-avatar rounded-circle bg-primary text-white d-inline-grid place-items-center px-3 py-2 fs-4">
+            <span
+                class="admin-avatar studio-avatar rounded-circle bg-primary text-white d-inline-grid place-items-center px-3 py-2 fs-4">
                 {{ mb_strtoupper(mb_substr(auth()->user()->name, 0, 1)) }}
             </span>
             <div>
                 <h1 class="h2 mb-1">Welcome back, {{ auth()->user()->name }}!</h1>
-                <p class="text-secondary mb-0">Track Roadmap Hub performance and manage the latest tasks and reviews in one place.</p>
+                <p class="text-secondary mb-0">Track Roadmap Hub performance and manage the latest tasks and reviews in one
+                    place.</p>
             </div>
         </div>
 
@@ -42,7 +45,8 @@
         <div class="col-12 col-sm-6 col-xl-3">
             <article class="admin-stat-card card h-100 border-0 shadow-sm">
                 <div class="card-body">
-                    <span class="admin-stat-card__icon text-primary"><i class="bi bi-person-video3" aria-hidden="true"></i></span>
+                    <span class="admin-stat-card__icon text-primary"><i class="bi bi-person-video3"
+                            aria-hidden="true"></i></span>
                     <p class="admin-stat-card__value mb-0">{{ number_format($totalCreators) }}</p>
                     <span class="admin-stat-card__label text-secondary">Active creators</span>
                     <span class="admin-stat-card__meta admin-stat-card__meta--placeholder" aria-hidden="true"></span>
@@ -69,7 +73,8 @@
                     <span class="admin-stat-card__label text-secondary">Pending reports</span>
                     <div class="admin-stat-card__meta">
                         <span class="admin-status-badge badge bg-warning text-dark">Needs review</span>
-                        <small class="text-secondary">Average rating: {{ number_format((float) $averageRating, 1) }} / 5</small>
+                        <small class="text-secondary">Average rating: {{ number_format((float) $averageRating, 1) }} /
+                            5</small>
                     </div>
                 </div>
             </article>
@@ -106,7 +111,8 @@
                             href="{{ url('/admin/creator-applications?status=pending') }}">
                             <span>
                                 <strong class="d-block">Creator applications</strong>
-                                <small>{{ number_format($pendingCreatorApplications) }} applications awaiting review</small>
+                                <small>{{ number_format($pendingCreatorApplications) }} applications awaiting
+                                    review</small>
                             </span>
                             <i class="admin-action-card__arrow bi bi-arrow-right" aria-hidden="true"></i>
                         </a>

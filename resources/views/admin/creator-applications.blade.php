@@ -5,10 +5,12 @@
 @section('admin-content')
     @include('admin.components.breadcrumb', ['current' => 'Creator applications'])
 
-    <section class="admin-page-heading d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-4">
+    <section
+        class="admin-page-heading d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-4">
         <div>
             <h1 class="h2 mb-1">Creator applications</h1>
-            <p class="text-secondary mb-0">Review applications from members who want to share their expertise and roadmaps.</p>
+            <p class="text-secondary mb-0">Review applications from members who want to share their expertise and roadmaps.
+            </p>
         </div>
     </section>
 
@@ -62,7 +64,9 @@
                                     </td>
                                     <td>{{ $listedApplication->user->email }}</td>
                                     <td>{{ $listedApplication->created_at?->format('M j, Y') ?? '—' }}</td>
-                                    <td>@include('admin.components.status-badge', ['status' => $listedApplication->status])</td>
+                                    <td>@include('admin.components.status-badge', [
+                                        'status' => $listedApplication->status,
+                                    ])</td>
                                     <td class="text-end">
                                         <a class="btn admin-btn-secondary btn-sm"
                                             href="{{ url('/admin/creator-applications/' . $listedApplication->id) }}{{ request()->filled('status') ? '?status=' . urlencode(request('status')) : '' }}">
@@ -84,7 +88,8 @@
 
     @isset($application)
         <section class="admin-panel card shadow-sm border-0 mt-4" id="application-details">
-            <div class="card-header bg-white d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 py-3">
+            <div
+                class="card-header bg-white d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 py-3">
                 <div>
                     <h2 class="h5 mb-1">{{ $application->user->name }}&rsquo;s application</h2>
                     <p class="text-secondary small mb-0">Application details and review actions.</p>
@@ -114,7 +119,8 @@
                     @if ($application->user->role !== 'learner')
                         <p class="small text-secondary mb-3">
                             This application cannot be approved because the applicant already has a
-                            {{ \Illuminate\Support\Str::headline($application->user->role) }} role. Only learner accounts can become creators.
+                            {{ \Illuminate\Support\Str::headline($application->user->role) }} role. Only learner accounts can
+                            become creators.
                         </p>
                     @endif
                     <div class="d-flex flex-wrap justify-content-end gap-2">
@@ -124,7 +130,8 @@
                             <button class="btn admin-btn-danger btn-sm" type="submit">Reject application</button>
                         </form>
                         @if ($application->user->role === 'learner')
-                            <form method="POST" action="{{ url('/admin/creator-applications/' . $application->id . '/approve') }}">
+                            <form method="POST"
+                                action="{{ url('/admin/creator-applications/' . $application->id . '/approve') }}">
                                 @csrf
                                 @method('PATCH')
                                 <button class="btn admin-btn-primary btn-sm" type="submit">Approve creator</button>

@@ -5,13 +5,15 @@
 @section('admin-content')
     @include('admin.components.breadcrumb', ['current' => 'Categories'])
 
-    <section class="admin-page-heading d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-4">
+    <section
+        class="admin-page-heading d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-4">
         <div>
             <h1 class="h2 mb-1">Manage categories</h1>
             <p class="text-secondary mb-0">Organize topics and help learners discover the right roadmaps.</p>
         </div>
         <button class="btn admin-btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#create-category-form"
-            aria-expanded="{{ old('form_context') === 'create-category' ? 'true' : 'false' }}" aria-controls="create-category-form">
+            aria-expanded="{{ old('form_context') === 'create-category' ? 'true' : 'false' }}"
+            aria-controls="create-category-form">
             Add category
         </button>
     </section>
@@ -29,8 +31,9 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="new-category-name">Category name</label>
-                        <input id="new-category-name" class="form-control admin-form-control @error('name') is-invalid @enderror"
-                            name="name" type="text" value="{{ old('name') }}" required>
+                        <input id="new-category-name"
+                            class="form-control admin-form-control @error('name') is-invalid @enderror" name="name"
+                            type="text" value="{{ old('name') }}" required>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -38,8 +41,9 @@
 
                     <div class="mb-0">
                         <label class="form-label" for="new-category-description">Description</label>
-                        <textarea id="new-category-description" class="form-control admin-form-control @error('description') is-invalid @enderror"
-                            name="description" rows="4">{{ old('description') }}</textarea>
+                        <textarea id="new-category-description"
+                            class="form-control admin-form-control @error('description') is-invalid @enderror" name="description"
+                            rows="4">{{ old('description') }}</textarea>
                         @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -57,8 +61,8 @@
 
     <section class="admin-panel card shadow-sm border-0">
         <div class="card-body p-0">
-            <form class="admin-filter-bar border-bottom p-3 d-flex flex-column flex-sm-row align-items-sm-center gap-2" method="GET"
-                action="{{ url('/admin/categories') }}">
+            <form class="admin-filter-bar border-bottom p-3 d-flex flex-column flex-sm-row align-items-sm-center gap-2"
+                method="GET" action="{{ url('/admin/categories') }}">
                 <label class="admin-search admin-search--wide input-group mb-0">
                     <span class="input-group-text bg-white"><i class="bi bi-search" aria-hidden="true"></i></span>
                     <input class="form-control" name="search" type="search" value="{{ request('search', '') }}"

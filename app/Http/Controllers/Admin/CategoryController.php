@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
         return view('admin.categories', [
             'categories' => Category::withCount('roadmaps')
-                ->when($validated['search'] ?? null, fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+                ->when($validated['search'] ?? null, fn ($query, $search) => $query->where('name', 'like', '%'.$search.'%'))
                 ->orderBy('name')
                 ->paginate(15)
                 ->withQueryString(),
@@ -88,8 +88,8 @@ class CategoryController extends Controller
             ->where('slug', $slug)
             ->when($ignoredCategory, fn ($query) => $query->whereKeyNot($ignoredCategory))
             ->exists()) {
-            $suffixText = '-' . $suffix;
-            $slug = Str::substr($baseSlug, 0, 255 - Str::length($suffixText)) . $suffixText;
+            $suffixText = '-'.$suffix;
+            $slug = Str::substr($baseSlug, 0, 255 - Str::length($suffixText)).$suffixText;
             $suffix++;
         }
 

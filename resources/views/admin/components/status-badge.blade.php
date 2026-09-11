@@ -1,9 +1,11 @@
-
-
 @props(['status'])
 
 @php
-    $normalizedStatus = str($status)->lower()->replace(['_', '-'], ' ')->trim()->value();
+    $normalizedStatus = str($status)
+        ->lower()
+        ->replace(['_', '-'], ' ')
+        ->trim()
+        ->value();
     $variants = [
         'approved' => 'success',
         'published' => 'success',

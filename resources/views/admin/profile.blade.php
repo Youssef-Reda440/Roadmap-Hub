@@ -37,8 +37,10 @@
                         <div class="row g-4">
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="profile-name">Full name</label>
-                                <input id="profile-name" class="form-control admin-form-control @error('name') is-invalid @enderror"
-                                    name="name" type="text" value="{{ old('name', $user->name) }}" required autocomplete="name">
+                                <input id="profile-name"
+                                    class="form-control admin-form-control @error('name') is-invalid @enderror"
+                                    name="name" type="text" value="{{ old('name', $user->name) }}" required
+                                    autocomplete="name">
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -46,8 +48,10 @@
 
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="profile-email">Email</label>
-                                <input id="profile-email" class="form-control admin-form-control @error('email') is-invalid @enderror"
-                                    name="email" type="email" value="{{ old('email', $user->email) }}" required autocomplete="email" dir="ltr">
+                                <input id="profile-email"
+                                    class="form-control admin-form-control @error('email') is-invalid @enderror"
+                                    name="email" type="email" value="{{ old('email', $user->email) }}" required
+                                    autocomplete="email" dir="ltr">
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

@@ -52,15 +52,20 @@
                             @foreach ($reports as $listedReport)
                                 @php
                                     $reportable = $listedReport->reportable;
-                                    $contentTitle = data_get($reportable, 'title')
-                                        ?? ($reportable ? class_basename($reportable) . ' #' . $reportable->getKey() : 'Unavailable content');
+                                    $contentTitle =
+                                        data_get($reportable, 'title') ??
+                                        ($reportable
+                                            ? class_basename($reportable) . ' #' . $reportable->getKey()
+                                            : 'Unavailable content');
                                 @endphp
                                 <tr>
                                     <td><strong>{{ $listedReport->user->name }}</strong></td>
                                     <td>{{ $contentTitle }}</td>
                                     <td>{{ $listedReport->reason }}</td>
                                     <td>{{ $listedReport->created_at?->format('M j, Y') ?? '—' }}</td>
-                                    <td>@include('admin.components.status-badge', ['status' => $listedReport->status])</td>
+                                    <td>@include('admin.components.status-badge', [
+                                        'status' => $listedReport->status,
+                                    ])</td>
                                     <td class="text-end">
                                         <a class="btn admin-btn-secondary btn-sm"
                                             href="{{ url('/admin/reports/' . $listedReport->id) }}{{ request()->filled('status') ? '?status=' . urlencode(request('status')) : '' }}">
@@ -83,12 +88,14 @@
     @isset($report)
         @php
             $reportable = $report->reportable;
-            $contentTitle = data_get($reportable, 'title')
-                ?? ($reportable ? class_basename($reportable) . ' #' . $reportable->getKey() : 'Unavailable content');
+            $contentTitle =
+                data_get($reportable, 'title') ??
+                ($reportable ? class_basename($reportable) . ' #' . $reportable->getKey() : 'Unavailable content');
         @endphp
 
         <section class="admin-panel card shadow-sm border-0 mt-4" id="report-details">
-            <div class="card-header bg-white d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 py-3">
+            <div
+                class="card-header bg-white d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 py-3">
                 <div>
                     <h2 class="h5 mb-1">Report details</h2>
                     <p class="small text-secondary mb-0">Review the reported content and its submitted reason.</p>

@@ -1,22 +1,50 @@
-
-
-
 @php
     $admin = auth()->user();
     $initial = $admin?->name ? mb_strtoupper(mb_substr($admin->name, 0, 1)) : 'A';
     $navigation = [
-        ['label' => 'Dashboard', 'icon' => 'bi-speedometer2', 'url' => url('/admin/dashboard'), 'active' => request()->is('admin/dashboard')],
-        ['label' => 'Users', 'icon' => 'bi-people', 'url' => url('/admin/users'), 'active' => request()->is('admin/users*')],
-        ['label' => 'Creator Applications', 'icon' => 'bi-person-plus', 'url' => url('/admin/creator-applications'), 'active' => request()->is('admin/creator-applications*')],
-        ['label' => 'Roadmap Reviews', 'icon' => 'bi-collection', 'url' => url('/admin/roadmap-reviews'), 'active' => request()->is('admin/roadmap-reviews*')],
-        ['label' => 'Categories', 'icon' => 'bi-grid', 'url' => url('/admin/categories'), 'active' => request()->is('admin/categories*')],
-        ['label' => 'Reports', 'icon' => 'bi-flag', 'url' => url('/admin/reports'), 'active' => request()->is('admin/reports*')],
+        [
+            'label' => 'Dashboard',
+            'icon' => 'bi-speedometer2',
+            'url' => url('/admin/dashboard'),
+            'active' => request()->is('admin/dashboard'),
+        ],
+        [
+            'label' => 'Users',
+            'icon' => 'bi-people',
+            'url' => url('/admin/users'),
+            'active' => request()->is('admin/users*'),
+        ],
+        [
+            'label' => 'Creator Applications',
+            'icon' => 'bi-person-plus',
+            'url' => url('/admin/creator-applications'),
+            'active' => request()->is('admin/creator-applications*'),
+        ],
+        [
+            'label' => 'Roadmap Reviews',
+            'icon' => 'bi-collection',
+            'url' => url('/admin/roadmap-reviews'),
+            'active' => request()->is('admin/roadmap-reviews*'),
+        ],
+        [
+            'label' => 'Categories',
+            'icon' => 'bi-grid',
+            'url' => url('/admin/categories'),
+            'active' => request()->is('admin/categories*'),
+        ],
+        [
+            'label' => 'Reports',
+            'icon' => 'bi-flag',
+            'url' => url('/admin/reports'),
+            'active' => request()->is('admin/reports*'),
+        ],
     ];
 @endphp
 
 <header class="studio-header sticky-top bg-white border-bottom">
     <nav class="studio-nav container navbar navbar-expand-xl py-3" aria-label="Admin navigation">
-        <a class="studio-brand navbar-brand fw-bold d-inline-flex align-items-center gap-2" href="{{ url('/admin/dashboard') }}">
+        <a class="studio-brand navbar-brand fw-bold d-inline-flex align-items-center gap-2"
+            href="{{ url('/admin/dashboard') }}">
             <span class="studio-brand-logo" aria-hidden="true">
                 <img src="{{ asset('assets/logo.ico') }}" alt="">
             </span>
@@ -41,7 +69,8 @@
 
                 <a class="studio-account nav-link d-inline-flex align-items-center gap-2 ms-xl-2 {{ request()->is('admin/profile') ? 'active' : '' }}"
                     href="{{ url('/admin/profile') }}" @if (request()->is('admin/profile')) aria-current="page" @endif>
-                    <span class="admin-avatar admin-avatar--small rounded-circle bg-primary text-white d-inline-grid place-items-center px-2 py-1">
+                    <span
+                        class="admin-avatar admin-avatar--small rounded-circle bg-primary text-white d-inline-grid place-items-center px-2 py-1">
                         {{ $initial }}
                     </span>
                     <span>

@@ -55,13 +55,16 @@
                                     <td>
                                         <strong>{{ $listedRoadmap->title }}</strong>
                                         @if (isset($listedRoadmap->resources_count))
-                                            <small class="d-block text-secondary">{{ $listedRoadmap->resources_count }} resources</small>
+                                            <small class="d-block text-secondary">{{ $listedRoadmap->resources_count }}
+                                                resources</small>
                                         @endif
                                     </td>
                                     <td>{{ $listedRoadmap->creator->name }}</td>
                                     <td>{{ $listedRoadmap->category->name }}</td>
                                     <td>{{ \Illuminate\Support\Str::headline($listedRoadmap->level) }}</td>
-                                    <td>@include('admin.components.status-badge', ['status' => $listedRoadmap->status])</td>
+                                    <td>@include('admin.components.status-badge', [
+                                        'status' => $listedRoadmap->status,
+                                    ])</td>
                                     <td>{{ $listedRoadmap->created_at?->format('M j, Y') ?? '—' }}</td>
                                     <td class="text-end">
                                         <a class="btn admin-btn-secondary btn-sm"
@@ -84,7 +87,8 @@
 
     @isset($roadmap)
         <section class="admin-panel card shadow-sm border-0 mt-4" id="roadmap-details">
-            <div class="card-header bg-white d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 py-3">
+            <div
+                class="card-header bg-white d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 py-3">
                 <div>
                     <span class="admin-summary-card__eyebrow small text-secondary text-uppercase">Roadmap details</span>
                     <h2 class="h4 mt-1 mb-0">{{ $roadmap->title }}</h2>
@@ -127,9 +131,11 @@
                                     <h4 class="h6 mb-1">{{ $resource->title }}</h4>
                                     <p class="text-secondary small mb-0">{{ $resource->description }}</p>
                                 </div>
-                                <span class="badge text-bg-light">{{ \Illuminate\Support\Str::headline($resource->type) }}</span>
+                                <span
+                                    class="badge text-bg-light">{{ \Illuminate\Support\Str::headline($resource->type) }}</span>
                             </div>
-                            <a class="small d-inline-block mt-2" href="{{ $resource->url }}" target="_blank" rel="noopener noreferrer">
+                            <a class="small d-inline-block mt-2" href="{{ $resource->url }}" target="_blank"
+                                rel="noopener noreferrer">
                                 Open resource
                             </a>
                         </article>
@@ -173,7 +179,8 @@
             @if ($roadmap->status === 'pending_review')
                 <div class="card-footer bg-white">
                     <p class="small text-secondary mb-3">
-                        Requesting changes is unavailable because review notes and a changes-requested status are not supported by the current schema.
+                        Requesting changes is unavailable because review notes and a changes-requested status are not supported
+                        by the current schema.
                     </p>
                     <div class="admin-form-actions d-flex flex-wrap justify-content-end gap-2">
                         <form method="POST" action="{{ url('/admin/roadmap-reviews/' . $roadmap->id . '/reject') }}">
