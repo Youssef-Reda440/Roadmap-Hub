@@ -8,7 +8,8 @@
 
         {{-- Brand --}}
         <a class="navbar-brand creator-brand" href="{{ route('creator.dashboard') }}">
-            <i class="bi bi-kanban-fill me-2"></i>
+             <img class="bi bi-kanban-fill me-2" src="{{ asset('assets/logo.ico') }}" width="50" height="50"
+                alt="">
             Roadmap Hub
         </a>
 
